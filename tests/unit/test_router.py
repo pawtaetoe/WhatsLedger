@@ -2,15 +2,15 @@ import asyncio
 
 import pytest
 
-import splitledger.handlers.router as router_module
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import Bill, LedgerSource
-from splitledger.handlers.router import HELP, UNCLEAR, MessageReader, Router
-from splitledger.llm.schemas import ExpenseDraft, MessageResult, ReceiptDraft
-from splitledger.llm.schemas_sg import SG
+import whatsledger.handlers.router as router_module
 from tests import fakes
 from tests.fakes import FakeAssistant, FakeBills, FakeLLM, FakeLogger, FakePlans, FakeTransport
 from tests.fakes.router import fake_router
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import Bill, LedgerSource
+from whatsledger.handlers.router import HELP, UNCLEAR, MessageReader, Router
+from whatsledger.llm.schemas import ExpenseDraft, MessageResult, ReceiptDraft
+from whatsledger.llm.schemas_sg import SG
 
 USER = "6581234567"
 

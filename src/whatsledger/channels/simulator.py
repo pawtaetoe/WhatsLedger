@@ -6,9 +6,9 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse, Response
 from pydantic import BaseModel
 
-from splitledger.channels.layout import split_choice, with_descriptions
-from splitledger.contracts.messages import Inbound
-from splitledger.handlers.router import Router, message_router
+from whatsledger.channels.layout import split_choice, with_descriptions
+from whatsledger.contracts.messages import Inbound
+from whatsledger.handlers.router import Router, message_router
 
 TEMPLATE = Path(__file__).resolve().parents[1] / "web" / "templates" / "sim.html"
 

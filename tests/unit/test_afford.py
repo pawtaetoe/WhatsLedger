@@ -1,12 +1,12 @@
 import pytest
 
-from splitledger.db.models import BudgetPlan, User
-from splitledger.plans import afford
-from splitledger.plans.afford import CORE_RULES, Ask, Means, Spending, assess
-from splitledger.plans.afford_sg import SG_RULES
-from splitledger.plans.quota import BucketStatus, PlanReport
-from splitledger.plans.upcoming import outlook
 from tests.unit.test_upcoming import PLANS, TODAY
+from whatsledger.db.models import BudgetPlan, User
+from whatsledger.plans import afford
+from whatsledger.plans.afford import CORE_RULES, Ask, Means, Spending, assess
+from whatsledger.plans.afford_sg import SG_RULES
+from whatsledger.plans.quota import BucketStatus, PlanReport
+from whatsledger.plans.upcoming import outlook
 
 SG_ALL = [*CORE_RULES, *SG_RULES]
 

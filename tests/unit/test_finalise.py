@@ -2,8 +2,8 @@ import uuid
 
 import pytest
 
-from splitledger.db.models import Bill, BillItem, ItemClaim, Participant
-from splitledger.split.finalise import Leftovers, even_split, item_split
+from whatsledger.db.models import Bill, BillItem, ItemClaim, Participant
+from whatsledger.split.finalise import Leftovers, even_split, item_split
 
 PAYER = Participant(id=uuid.uuid4(), guest_name="Tommy")
 ANNA = Participant(id=uuid.uuid4(), guest_name="Anna")

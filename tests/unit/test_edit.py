@@ -1,4 +1,4 @@
-from splitledger.split.edit import cents_of, charges_of
+from whatsledger.split.edit import cents_of, charges_of
 
 
 # prices as people type them, with a dot or a comma, and nonsense refused

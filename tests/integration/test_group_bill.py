@@ -1,13 +1,13 @@
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import Bill, BillItem, Participant, User
-from splitledger.handlers import bill as bill_module
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.log import READING, ExpenseLogger
-from splitledger.llm.schemas import GLOBAL, ReceiptDraft, ReceiptItem
-from splitledger.split.tokens import ClaimTokens
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import Bill, BillItem, Participant, User
+from whatsledger.handlers import bill as bill_module
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.log import READING, ExpenseLogger
+from whatsledger.llm.schemas import GLOBAL, ReceiptDraft, ReceiptItem
+from whatsledger.split.tokens import ClaimTokens
 
 ME = "6581234567"
 DINNER = ReceiptDraft(

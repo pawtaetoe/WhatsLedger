@@ -9,10 +9,10 @@ import respx
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-import splitledger.channels.whatsapp as whatsapp
-from splitledger.settings import settings
+import whatsledger.channels.whatsapp as whatsapp
 from tests.fakes import FakeTransport
 from tests.fakes.router import fake_router
+from whatsledger.settings import settings
 
 FIXTURES = Path(__file__).parents[1] / "fixtures" / "whatsapp"
 SECRET = "test-secret"

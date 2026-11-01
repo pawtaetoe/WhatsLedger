@@ -1,7 +1,7 @@
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import LedgerSource
-from splitledger.llm.schemas import ExpenseDraft, ReceiptDraft
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import LedgerSource
+from whatsledger.llm.schemas import ExpenseDraft, ReceiptDraft
 
 
 # logger fake that echoes text and images and records every call

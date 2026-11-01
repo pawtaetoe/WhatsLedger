@@ -1,7 +1,7 @@
 from datetime import date
 
-from splitledger.db.models import PlannedSpend
-from splitledger.plans.upcoming import Due, add_months, due_days, open_days, outlook, per_month
+from whatsledger.db.models import PlannedSpend
+from whatsledger.plans.upcoming import Due, add_months, due_days, open_days, outlook, per_month
 
 TODAY = date(2026, 10, 28)
 

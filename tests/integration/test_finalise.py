@@ -3,17 +3,17 @@ from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import func, select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import Allocation, Bill, LedgerEntry, LedgerKind, Participant, User
-from splitledger.handlers import bill as bill_module
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.log import ExpenseLogger
-from splitledger.llm.schemas import GLOBAL
-from splitledger.split.claims import ClaimBook
-from splitledger.split.finalise import BillCloser
-from splitledger.split.tokens import ClaimTokens
 from tests.fakes import FakeLLM, FakeTransport
 from tests.integration.test_claims import seed
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import Allocation, Bill, LedgerEntry, LedgerKind, Participant, User
+from whatsledger.handlers import bill as bill_module
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.log import ExpenseLogger
+from whatsledger.llm.schemas import GLOBAL
+from whatsledger.split.claims import ClaimBook
+from whatsledger.split.finalise import BillCloser
+from whatsledger.split.tokens import ClaimTokens
 
 PAYER = "6581234567"
 ANNA = "6591111111"

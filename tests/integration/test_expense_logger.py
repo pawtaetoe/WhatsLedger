@@ -1,12 +1,12 @@
 from sqlalchemy import func, select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import LedgerEntry, User
-from splitledger.handlers import log as log_module
-from splitledger.handlers.log import READING, SPLIT_GONE, ExpenseLogger, quick_parse
-from splitledger.llm.schemas import GLOBAL, ExpenseDraft, ReceiptDraft, ReceiptItem
 from tests.fakes import FakeLLM, FakeTransport
 from tests.fakes.router import fake_router
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import LedgerEntry, User
+from whatsledger.handlers import log as log_module
+from whatsledger.handlers.log import READING, SPLIT_GONE, ExpenseLogger, quick_parse
+from whatsledger.llm.schemas import GLOBAL, ExpenseDraft, ReceiptDraft, ReceiptItem
 
 
 # one text message from a user

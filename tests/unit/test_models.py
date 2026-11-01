@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 
-from splitledger.db.models import Base
+from whatsledger.db.models import Base
 
 
 # all tables needed by later cards exist

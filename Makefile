@@ -10,7 +10,7 @@ migrate:
 dev:
 	docker compose up -d db
 	uv run alembic upgrade head
-	uv run uvicorn splitledger.main:app --reload --app-dir src
+	uv run uvicorn whatsledger.main:app --reload --app-dir src
 
 test:
 	uv run pytest -q

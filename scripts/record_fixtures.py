@@ -2,15 +2,15 @@ import asyncio
 import json
 from pathlib import Path
 
-from splitledger.handlers.log import RECEIPT_PROMPT
-from splitledger.handlers.router import PROMPT
-from splitledger.llm.client import MetaLLM, fixture_path
-from splitledger.llm.schemas import MessageResult, ReceiptDraft, SmokeResult
-from splitledger.settings import settings
+from whatsledger.handlers.log import RECEIPT_PROMPT
+from whatsledger.handlers.router import PROMPT
+from whatsledger.llm.client import MetaLLM, fixture_path
+from whatsledger.llm.schemas import MessageResult, ReceiptDraft, SmokeResult
+from whatsledger.settings import settings
 
 ROOT = Path(__file__).parents[1]
 FIXTURES = ROOT / "tests" / "fixtures" / "llm"
-PROMPT_FILE = ROOT / "src" / "splitledger" / "llm" / "prompts" / "smoke.md"
+PROMPT_FILE = ROOT / "src" / "whatsledger" / "llm" / "prompts" / "smoke.md"
 RECEIPTS = ROOT / "tests" / "fixtures" / "receipts"
 MESSAGES = ROOT / "tests" / "fixtures" / "messages.json"
 

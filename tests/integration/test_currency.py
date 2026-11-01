@@ -1,12 +1,12 @@
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import LedgerEntry, User
-from splitledger.handlers.currency import UNKNOWN, CurrencyChoice
-from splitledger.handlers.log import ExpenseLogger
-from splitledger.llm.schemas import ExpenseDraft
-from splitledger.llm.schemas_sg import SG
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import LedgerEntry, User
+from whatsledger.handlers.currency import UNKNOWN, CurrencyChoice
+from whatsledger.handlers.log import ExpenseLogger
+from whatsledger.llm.schemas import ExpenseDraft
+from whatsledger.llm.schemas_sg import SG
 
 MALAYSIA = "60123456789"
 

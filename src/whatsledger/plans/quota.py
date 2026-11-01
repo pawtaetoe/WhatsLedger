@@ -9,9 +9,9 @@ from sqlalchemy import func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.db.models import Budget, BudgetPlan, LedgerEntry, LedgerKind, User
-from splitledger.handlers.log import money
-from splitledger.split.fx import RateSource, convert
+from whatsledger.db.models import Budget, BudgetPlan, LedgerEntry, LedgerKind, User
+from whatsledger.handlers.log import money
+from whatsledger.split.fx import RateSource, convert
 
 # alert once at each of these shares of a bucket
 THRESHOLDS = (80, 100)

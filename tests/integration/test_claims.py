@@ -3,9 +3,9 @@ import uuid
 
 from sqlalchemy import select, update
 
-from splitledger.db.models import Bill, BillItem, BillStatus, Participant, User
-from splitledger.split import claims as claims_module
-from splitledger.split.claims import ClaimBook
+from whatsledger.db.models import Bill, BillItem, BillStatus, Participant, User
+from whatsledger.split import claims as claims_module
+from whatsledger.split.claims import ClaimBook
 
 DISHES = [("Pasta", 2000), ("Pasta", 2000), ("Calamari", 1800)]
 

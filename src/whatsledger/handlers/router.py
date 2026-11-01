@@ -5,32 +5,32 @@ from dataclasses import replace
 from pathlib import Path
 from typing import Literal
 
-from splitledger.contracts.llm import LLM
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import LedgerSource
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.ask import SpendAssistant
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.bills import UpcomingBills
-from splitledger.handlers.claim import ClaimChat
-from splitledger.handlers.currency import CurrencyChoice
-from splitledger.handlers.dashboard import LINK_MINUTES, DashboardLink
-from splitledger.handlers.log import ExpenseLogger, quick_parse
-from splitledger.handlers.plan import PlanManager
-from splitledger.handlers.settle import SettleUp
-from splitledger.llm.client import MetaLLM
-from splitledger.llm.schemas import GLOBAL, ExpenseDraft, Locale, MessageResult, Regions
-from splitledger.llm.schemas_sg import SG
-from splitledger.pay.rails import PayRails
-from splitledger.pay.rails_sg import PayNow
-from splitledger.plans.afford import CORE_RULES, AffordPack
-from splitledger.plans.afford_sg import SG_FIELDS, SG_RULES
-from splitledger.plans.quota import QuotaBook
-from splitledger.settings import settings
-from splitledger.split.claims import ClaimBook
-from splitledger.split.fx import Rates
-from splitledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.contracts.llm import LLM
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import LedgerSource
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.ask import SpendAssistant
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.bills import UpcomingBills
+from whatsledger.handlers.claim import ClaimChat
+from whatsledger.handlers.currency import CurrencyChoice
+from whatsledger.handlers.dashboard import LINK_MINUTES, DashboardLink
+from whatsledger.handlers.log import ExpenseLogger, quick_parse
+from whatsledger.handlers.plan import PlanManager
+from whatsledger.handlers.settle import SettleUp
+from whatsledger.llm.client import MetaLLM
+from whatsledger.llm.schemas import GLOBAL, ExpenseDraft, Locale, MessageResult, Regions
+from whatsledger.llm.schemas_sg import SG
+from whatsledger.pay.rails import PayRails
+from whatsledger.pay.rails_sg import PayNow
+from whatsledger.plans.afford import CORE_RULES, AffordPack
+from whatsledger.plans.afford_sg import SG_FIELDS, SG_RULES
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.settings import settings
+from whatsledger.split.claims import ClaimBook
+from whatsledger.split.fx import Rates
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
 
 LOG = logging.getLogger(__name__)
 # add a region with a new schemas module and list it here

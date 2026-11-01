@@ -10,12 +10,12 @@ import respx
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-import splitledger.channels.twilio as twilio
-from splitledger.channels.layout import link_key
-from splitledger.channels.whatsapp import WhatsAppChannel
-from splitledger.contracts.messages import Inbound
-from splitledger.settings import settings
+import whatsledger.channels.twilio as twilio
 from tests.fakes.router import fake_router
+from whatsledger.channels.layout import link_key
+from whatsledger.channels.whatsapp import WhatsAppChannel
+from whatsledger.contracts.messages import Inbound
+from whatsledger.settings import settings
 
 FIXTURES = Path(__file__).parents[1] / "fixtures" / "twilio"
 TOKEN = "test-token"

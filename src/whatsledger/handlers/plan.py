@@ -12,19 +12,19 @@ from typing import Any
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.llm import LLM
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.state import State
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import BudgetPlan, User
-from splitledger.db.state import DbState
-from splitledger.handlers.dashboard import SEE_ALL, DashboardLink
-from splitledger.handlers.log import ensure_user, money
-from splitledger.llm.schemas import CustomPlan, Locale
-from splitledger.plans.custom import check_plan, fits_income
-from splitledger.plans.frameworks import PRESETS, SAVE_CHOICES, Framework, pay_yourself_first
-from splitledger.plans.quota import QuotaBook
-from splitledger.plans.store import plan_amounts, save_plan
+from whatsledger.contracts.llm import LLM
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.state import State
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import BudgetPlan, User
+from whatsledger.db.state import DbState
+from whatsledger.handlers.dashboard import SEE_ALL, DashboardLink
+from whatsledger.handlers.log import ensure_user, money
+from whatsledger.llm.schemas import CustomPlan, Locale
+from whatsledger.plans.custom import check_plan, fits_income
+from whatsledger.plans.frameworks import PRESETS, SAVE_CHOICES, Framework, pay_yourself_first
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.plans.store import plan_amounts, save_plan
 
 WELCOME = (
     "*Hi! I help with your money, right here in WhatsApp.*\n"

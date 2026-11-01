@@ -3,10 +3,10 @@ import re
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import User
-from splitledger.llm.schemas import CURRENCY_CODES, by_country_code
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import User
+from whatsledger.llm.schemas import CURRENCY_CODES, by_country_code
 
 # a phone's country calling code and that country's currency, longest code wins
 CALLING_CODES = {

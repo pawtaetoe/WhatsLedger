@@ -3,9 +3,9 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Any
 
-from splitledger.handlers.log import money
-from splitledger.plans.quota import PlanReport
-from splitledger.plans.upcoming import Due, Outlook
+from whatsledger.handlers.log import money
+from whatsledger.plans.quota import PlanReport
+from whatsledger.plans.upcoming import Due, Outlook
 
 KINDS = ("purchase", "car", "home")
 PROPERTY_TYPES = ("hdb", "ec", "private", "other")

@@ -1,8 +1,8 @@
-# SplitLedger
+# WhatsLedger
 
 **Your money, in the chat you already use.**
 
-SplitLedger is a WhatsApp bot that does two jobs. First, it tracks your own spending: you log by text, voice note or receipt photo, then ask questions about it, set a budget plan and check whether you can afford something. Second, it splits group bills. Snap the receipt with the caption `split` and forward one message. Each friend replies with the numbers of the dishes they had. When everyone is in, the bill closes itself and everyone is told what they owe, with a PayNow
+WhatsLedger is a WhatsApp bot that does two jobs. First, it tracks your own spending: you log by text, voice note or receipt photo, then ask questions about it, set a budget plan and check whether you can afford something. Second, it splits group bills. Snap the receipt with the caption `split` and forward one message. Each friend replies with the numbers of the dishes they had. When everyone is in, the bill closes itself and everyone is told what they owe, with a PayNow
 number and QR to pay it and an I've paid button. Simple things stay in the chat. Anything with a list (ticking dishes, the dashboard, the plan form) opens on a web page from a link.
 
 Built for the Meta Global AI Developer Hackathon (Indie track)
@@ -114,7 +114,7 @@ numbers with no pack of their own. The core works in any currency.
 - **Session cookies:** after the link opens, a cookie keeps you signed in. It is `HttpOnly` and
   `SameSite=Lax`, and `Secure` when served over https.
 - **No strangers on a bill:** to join a bill you must have a WhatsApp number linked to
-  SplitLedger. Nobody can type a name in, and every page shows only the signed-in person's
+  WhatsLedger. Nobody can type a name in, and every page shows only the signed-in person's
   data.
 - **The model never touches money directly:**
   - Its replies must match a JSON schema, and Python checks every number before saving.

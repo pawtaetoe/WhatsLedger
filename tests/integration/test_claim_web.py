@@ -3,16 +3,16 @@ from datetime import UTC, datetime
 from sqlalchemy import select
 from starlette.requests import Request
 
-from splitledger.db.models import Bill, BillStatus, Participant, User
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.dashboard import COOKIE, bill_links
-from splitledger.handlers.log import ExpenseLogger
-from splitledger.llm.schemas import GLOBAL
-from splitledger.split.claims import ClaimBook
-from splitledger.split.tokens import ClaimTokens, LoginLinks
-from splitledger.web.claim import ClaimPage
 from tests.fakes import FakeLLM, FakeTransport
 from tests.integration.test_claims import seed
+from whatsledger.db.models import Bill, BillStatus, Participant, User
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.dashboard import COOKIE, bill_links
+from whatsledger.handlers.log import ExpenseLogger
+from whatsledger.llm.schemas import GLOBAL
+from whatsledger.split.claims import ClaimBook
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.web.claim import ClaimPage
 
 TOKENS = ClaimTokens("secret")
 

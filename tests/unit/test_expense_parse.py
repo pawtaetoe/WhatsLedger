@@ -1,8 +1,8 @@
 import pytest
 
-from splitledger.handlers.log import clean_note, money, quick_parse
-from splitledger.llm.schemas import GLOBAL
-from splitledger.llm.schemas_sg import SG
+from whatsledger.handlers.log import clean_note, money, quick_parse
+from whatsledger.llm.schemas import GLOBAL
+from whatsledger.llm.schemas_sg import SG
 
 GLOBAL_ROWS = [
     ("Coffee $6.50", 650, "Dining"),

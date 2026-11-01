@@ -10,16 +10,16 @@ from zoneinfo import ZoneInfo
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 
-from splitledger.contracts.transport import Transport
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.dashboard import COOKIE, COOKIE_DAYS, LINK_MINUTES, PAGES
-from splitledger.handlers.router import book, rates
-from splitledger.handlers.settle import SettleUp
-from splitledger.pay.rails import PayRails
-from splitledger.settings import settings
-from splitledger.split.overview import Overview
-from splitledger.split.tokens import ClaimTokens, LoginLinks
-from splitledger.web.claim import render
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.dashboard import COOKIE, COOKIE_DAYS, LINK_MINUTES, PAGES
+from whatsledger.handlers.router import book, rates
+from whatsledger.handlers.settle import SettleUp
+from whatsledger.pay.rails import PayRails
+from whatsledger.settings import settings
+from whatsledger.split.overview import Overview
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.web.claim import render
 
 LOG = logging.getLogger(__name__)
 # pages a link button may open, the first part of the path
@@ -116,7 +116,7 @@ class DashboardPage:
             for open_bill in [*board.paid, *board.joined]
         }
         pay = {
-            str(b.user): self._rails.offer(b.wa, -b.cents, b.currency, "SplitLedger").label
+            str(b.user): self._rails.offer(b.wa, -b.cents, b.currency, "WhatsLedger").label
             for b in board.people() if b.cents < 0 and b.user and b.wa
         }
         tab = tab if tab in TABS else "overview"

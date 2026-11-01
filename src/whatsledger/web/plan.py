@@ -9,19 +9,19 @@ from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.llm import LLM
-from splitledger.db.models import BudgetPlan, User
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.plan import MODEL_TIMEOUT, PROMPT, parse_income
-from splitledger.llm.client import MetaLLM
-from splitledger.llm.schemas import CustomPlan
-from splitledger.plans.custom import check_plan, fits_income
-from splitledger.plans.frameworks import PRESETS, SAVE_CHOICES, Framework, pay_yourself_first
-from splitledger.plans.store import plan_amounts, save_plan
-from splitledger.settings import settings
-from splitledger.split.tokens import ClaimTokens
-from splitledger.web.claim import render
-from splitledger.web.dashboard import SIGN_IN, DashboardPage, dashboard_page
+from whatsledger.contracts.llm import LLM
+from whatsledger.db.models import BudgetPlan, User
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.plan import MODEL_TIMEOUT, PROMPT, parse_income
+from whatsledger.llm.client import MetaLLM
+from whatsledger.llm.schemas import CustomPlan
+from whatsledger.plans.custom import check_plan, fits_income
+from whatsledger.plans.frameworks import PRESETS, SAVE_CHOICES, Framework, pay_yourself_first
+from whatsledger.plans.store import plan_amounts, save_plan
+from whatsledger.settings import settings
+from whatsledger.split.tokens import ClaimTokens
+from whatsledger.web.claim import render
+from whatsledger.web.dashboard import SIGN_IN, DashboardPage, dashboard_page
 
 LOG = logging.getLogger(__name__)
 CHOICES = ("503020", "60", "pyf", "custom")

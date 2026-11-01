@@ -2,17 +2,17 @@ from datetime import timedelta
 
 from sqlalchemy import func, select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import BudgetPlan, ChatState, LedgerEntry
-from splitledger.db.state import DbState
-from splitledger.handlers.log import ExpenseLogger
-from splitledger.handlers.plan import PlanManager
-from splitledger.llm.schemas import GLOBAL, ReceiptDraft
-from splitledger.plans.quota import QuotaBook
 from tests.fakes import FakeLLM, FakeTransport
 from tests.integration.test_claim_chat import ANNA, chat, text
 from tests.integration.test_claims import seed
 from tests.integration.test_plans import ME, msg
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import BudgetPlan, ChatState, LedgerEntry
+from whatsledger.db.state import DbState
+from whatsledger.handlers.log import ExpenseLogger
+from whatsledger.handlers.plan import PlanManager
+from whatsledger.llm.schemas import GLOBAL, ReceiptDraft
+from whatsledger.plans.quota import QuotaBook
 
 HOUR = timedelta(hours=1)
 

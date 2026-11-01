@@ -10,17 +10,17 @@ from sqlalchemy import func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.llm import LLM
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.state import State
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import LedgerEntry, LedgerKind, LedgerSource, LedgerStatus, User
-from splitledger.db.state import DbState
-from splitledger.handlers.currency import currency_for, timezone_for
-from splitledger.llm.schemas import CURRENCY_CODES, Category, ExpenseDraft, Locale, ReceiptDraft
+from whatsledger.contracts.llm import LLM
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.state import State
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import LedgerEntry, LedgerKind, LedgerSource, LedgerStatus, User
+from whatsledger.db.state import DbState
+from whatsledger.handlers.currency import currency_for, timezone_for
+from whatsledger.llm.schemas import CURRENCY_CODES, Category, ExpenseDraft, Locale, ReceiptDraft
 
 if TYPE_CHECKING:
-    from splitledger.plans.quota import QuotaBook
+    from whatsledger.plans.quota import QuotaBook
 
 PROMPTS = Path(__file__).parents[1] / "llm" / "prompts"
 RECEIPT_PROMPT = f"parse_receipt: {(PROMPTS / 'parse_receipt.md').read_text(encoding='utf-8')}"

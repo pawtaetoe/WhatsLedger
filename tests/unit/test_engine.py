@@ -2,7 +2,7 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
-from splitledger.split.engine import Bill, BillSplitter, Claim, Item, UnclaimedItems
+from whatsledger.split.engine import Bill, BillSplitter, Claim, Item, UnclaimedItems
 
 
 # worked example from the main plan, 120 dollar dinner split four ways

@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from splitledger.channels.simulator import dev_router, simulator
-from splitledger.handlers.router import STALE
 from tests.fakes.router import fake_router
+from whatsledger.channels.simulator import dev_router, simulator
+from whatsledger.handlers.router import STALE
 
 # the simulator routes on their own, main only mounts them when ENV is dev
 app = FastAPI()
@@ -28,7 +28,7 @@ def test_simulator_page_served():
     client = TestClient(app)
     response = client.get("/dev/chat?user=alice")
     assert response.status_code == 200
-    assert "SplitLedger simulator" in response.text
+    assert "WhatsLedger simulator" in response.text
 
 
 # posting an image reaches the router and the same bytes come back

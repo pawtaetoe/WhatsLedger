@@ -5,14 +5,14 @@ from typing import Annotated
 from fastapi import APIRouter, Form
 from fastapi.responses import HTMLResponse
 
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import User
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.bill import GroupBills, edit_links
-from splitledger.settings import settings
-from splitledger.split.edit import BillEditor, Row
-from splitledger.split.tokens import ClaimTokens
-from splitledger.web.claim import render
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import User
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.bill import GroupBills, edit_links
+from whatsledger.settings import settings
+from whatsledger.split.edit import BillEditor, Row
+from whatsledger.split.tokens import ClaimTokens
+from whatsledger.web.claim import render
 
 EXPIRED = (
     "This link has expired",

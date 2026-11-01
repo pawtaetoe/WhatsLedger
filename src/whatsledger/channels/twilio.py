@@ -10,12 +10,12 @@ from urllib.parse import parse_qsl
 import httpx
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request, Response
 
-from splitledger.channels import layout
-from splitledger.channels.layout import fit, link_key, numbered, split_choice, with_descriptions
-from splitledger.channels.whatsapp import WhatsAppChannel
-from splitledger.contracts.messages import Inbound
-from splitledger.handlers.router import message_router
-from splitledger.settings import settings
+from whatsledger.channels import layout
+from whatsledger.channels.layout import fit, link_key, numbered, split_choice, with_descriptions
+from whatsledger.channels.whatsapp import WhatsAppChannel
+from whatsledger.contracts.messages import Inbound
+from whatsledger.handlers.router import message_router
+from whatsledger.settings import settings
 
 LOG = logging.getLogger(__name__)
 API_BASE = "https://api.twilio.com/2010-04-01/Accounts"

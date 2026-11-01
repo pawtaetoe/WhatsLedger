@@ -9,17 +9,17 @@ from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.channels.layout import SEP
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant, User
-from splitledger.handlers.dashboard import LINK_MINUTES, SEE_ALL, dashboard_url
-from splitledger.handlers.log import ExpenseLogger, ensure_user, money, receipt_adds_up
-from splitledger.handlers.settle import OWE_ALL, SettleUp
-from splitledger.llm.schemas import Locale, ReceiptDraft
-from splitledger.split.edit import BillEditor
-from splitledger.split.finalise import BillCloser, Closing, Leftovers
-from splitledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.channels.layout import SEP
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant, User
+from whatsledger.handlers.dashboard import LINK_MINUTES, SEE_ALL, dashboard_url
+from whatsledger.handlers.log import ExpenseLogger, ensure_user, money, receipt_adds_up
+from whatsledger.handlers.settle import OWE_ALL, SettleUp
+from whatsledger.llm.schemas import Locale, ReceiptDraft
+from whatsledger.split.edit import BillEditor
+from whatsledger.split.finalise import BillCloser, Closing, Leftovers
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
 
 LOG = logging.getLogger(__name__)
 # days a bill can still be closed in words without its button
@@ -600,7 +600,7 @@ class GroupBills:
             try:
                 if self._settle is not None and payer is not None:
                     await self._settle.ask(
-                        transport, user, payer, c, text, share.cents, f"SplitLedger {bill.code}"
+                        transport, user, payer, c, text, share.cents, f"WhatsLedger {bill.code}"
                     )
                 else:
                     await transport.send_buttons(user.wa_user_id, text, [OWE_ALL])

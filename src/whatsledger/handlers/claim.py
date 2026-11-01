@@ -10,16 +10,16 @@ from typing import Any
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.llm import LLM
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.state import State
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import Bill, User
-from splitledger.db.state import DbState
-from splitledger.handlers.dashboard import DashboardLink
-from splitledger.handlers.log import ensure_user, money
-from splitledger.llm.schemas import ClaimMap, Locale
-from splitledger.split.claims import CLOSED, BillView, ClaimBook, Line
+from whatsledger.contracts.llm import LLM
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.state import State
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import Bill, User
+from whatsledger.db.state import DbState
+from whatsledger.handlers.dashboard import DashboardLink
+from whatsledger.handlers.log import ensure_user, money
+from whatsledger.llm.schemas import ClaimMap, Locale
+from whatsledger.split.claims import CLOSED, BillView, ClaimBook, Line
 
 LOG = logging.getLogger(__name__)
 PROMPT = (Path(__file__).parents[1] / "llm" / "prompts" / "map_claim.md").read_text(

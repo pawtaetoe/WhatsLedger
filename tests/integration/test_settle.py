@@ -1,13 +1,13 @@
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import LedgerEntry, LedgerKind, User
-from splitledger.handlers.settle import NOT_YOURS, OWE_ALL, SettleUp, paid_button
-from splitledger.pay.rails import PLAIN, PayRails
-from splitledger.pay.rails_sg import PayNow
-from splitledger.plans.quota import QuotaBook
-from splitledger.split.overview import Overview
 from tests.fakes import FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import LedgerEntry, LedgerKind, User
+from whatsledger.handlers.settle import NOT_YOURS, OWE_ALL, SettleUp, paid_button
+from whatsledger.pay.rails import PLAIN, PayRails
+from whatsledger.pay.rails_sg import PayNow
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.split.overview import Overview
 
 TOMMY, ANNA = "6581234567", "6591111111"
 

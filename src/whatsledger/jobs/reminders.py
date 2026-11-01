@@ -2,9 +2,9 @@ import asyncio
 import logging
 from datetime import UTC, datetime
 
-from splitledger.contracts.transport import Transport
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.bills import UpcomingBills
+from whatsledger.contracts.transport import Transport
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.bills import UpcomingBills
 
 LOG = logging.getLogger(__name__)
 # seconds between checks for bills to remind about and bills ready to close

@@ -2,14 +2,14 @@ from datetime import UTC, datetime
 
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import Bill, BillItem, User
-from splitledger.handlers import bill as bill_module
-from splitledger.split import edit as edit_module
-from splitledger.split.claims import ClaimBook
-from splitledger.split.edit import BAD_CHARGES, BAD_PRICE, NOT_YOURS, STARTED, BillEditor, Row
-from splitledger.split.tokens import ClaimTokens
 from tests.integration.test_group_bill import DINNER, ME, PHOTO, maker
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import Bill, BillItem, User
+from whatsledger.handlers import bill as bill_module
+from whatsledger.split import edit as edit_module
+from whatsledger.split.claims import ClaimBook
+from whatsledger.split.edit import BAD_CHARGES, BAD_PRICE, NOT_YOURS, STARTED, BillEditor, Row
+from whatsledger.split.tokens import ClaimTokens
 
 
 # the bill read from a receipt whose lines don't add up, with its lines in order

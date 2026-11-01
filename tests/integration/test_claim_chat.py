@@ -1,13 +1,13 @@
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import ItemClaim, Participant
-from splitledger.handlers import claim as claim_module
-from splitledger.handlers.claim import ClaimChat
-from splitledger.llm.schemas import GLOBAL, ClaimMap, ClaimPart, PersonClaims
-from splitledger.split.claims import ClaimBook
 from tests.fakes import FakeLLM, FakeTransport
 from tests.integration.test_claims import seed
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import ItemClaim, Participant
+from whatsledger.handlers import claim as claim_module
+from whatsledger.handlers.claim import ClaimChat
+from whatsledger.llm.schemas import GLOBAL, ClaimMap, ClaimPart, PersonClaims
+from whatsledger.split.claims import ClaimBook
 
 PAYER = "6581234567"
 ANNA = "6591111111"

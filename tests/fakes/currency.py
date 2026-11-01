@@ -1,6 +1,6 @@
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.handlers.currency import TYPED
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.handlers.currency import TYPED
 
 
 # currency fake that records what it was asked to do

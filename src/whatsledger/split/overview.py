@@ -7,13 +7,13 @@ from zoneinfo import ZoneInfo
 from sqlalchemy import and_, case, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.db import models
-from splitledger.db.models import Bill, BillItem, BillStatus, LedgerEntry, LedgerKind, User
-from splitledger.handlers.bill import even_share
-from splitledger.plans.quota import PlanReport, QuotaBook
-from splitledger.plans.upcoming import open_days, outlook
-from splitledger.split.claims import preview_share
-from splitledger.split.fx import RateSource, convert
+from whatsledger.db import models
+from whatsledger.db.models import Bill, BillItem, BillStatus, LedgerEntry, LedgerKind, User
+from whatsledger.handlers.bill import even_share
+from whatsledger.plans.quota import PlanReport, QuotaBook
+from whatsledger.plans.upcoming import open_days, outlook
+from whatsledger.split.claims import preview_share
+from whatsledger.split.fx import RateSource, convert
 
 # how far the dashboard looks for the next day a bill is due
 NEXT_DAYS = 400

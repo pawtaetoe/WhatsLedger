@@ -1,5 +1,5 @@
-from splitledger.channels import layout
-from splitledger.channels.layout import fit, numbered, split_choice, with_descriptions
+from whatsledger.channels import layout
+from whatsledger.channels.layout import fit, numbered, split_choice, with_descriptions
 
 CHOICES = [("a", "50/30/20 — needs, wants, savings"), ("b", "Cancel")]
 

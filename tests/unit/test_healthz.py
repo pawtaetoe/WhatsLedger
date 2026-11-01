@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from splitledger.main import app
+from whatsledger.main import app
 
 
 # healthz reports ok

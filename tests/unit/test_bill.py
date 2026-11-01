@@ -2,11 +2,11 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from splitledger.db.models import Bill, BillItem
-from splitledger.handlers import bill as bill_module
-from splitledger.handlers.bill import even_share, even_text, forward_text, new_code, units
-from splitledger.llm.schemas import ReceiptDraft, ReceiptItem
-from splitledger.split.tokens import ClaimTokens
+from whatsledger.db.models import Bill, BillItem
+from whatsledger.handlers import bill as bill_module
+from whatsledger.handlers.bill import even_share, even_text, forward_text, new_code, units
+from whatsledger.llm.schemas import ReceiptDraft, ReceiptItem
+from whatsledger.split.tokens import ClaimTokens
 
 NOW = datetime(2026, 10, 28, 12, tzinfo=UTC)
 

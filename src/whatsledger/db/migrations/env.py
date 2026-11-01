@@ -4,8 +4,8 @@ from alembic import context
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from splitledger.db.models import Base
-from splitledger.settings import settings
+from whatsledger.db.models import Base
+from whatsledger.settings import settings
 
 config = context.config
 

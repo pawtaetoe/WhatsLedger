@@ -3,11 +3,11 @@ from datetime import UTC, datetime
 
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.handlers.log import ensure_user
-from splitledger.llm.schemas import Locale
-from splitledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.handlers.log import ensure_user
+from whatsledger.llm.schemas import Locale
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
 
 # minutes a sign in link from the chat works
 LINK_MINUTES = 15

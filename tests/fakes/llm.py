@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from typing import TypeVar
 
-from splitledger.contracts.llm import Tool, ToolRunResult
+from whatsledger.contracts.llm import Tool, ToolRunResult
 
 T = TypeVar("T")
 

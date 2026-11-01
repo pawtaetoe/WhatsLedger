@@ -10,9 +10,9 @@ from typing import Any, TypeVar, cast
 import httpx
 from pydantic import BaseModel
 
-from splitledger.contracts.llm import Tool, ToolRunResult
-from splitledger.llm.audio import to_wav
-from splitledger.settings import settings
+from whatsledger.contracts.llm import Tool, ToolRunResult
+from whatsledger.llm.audio import to_wav
+from whatsledger.settings import settings
 
 T = TypeVar("T")
 

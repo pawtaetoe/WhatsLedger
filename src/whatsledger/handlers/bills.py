@@ -7,12 +7,12 @@ from zoneinfo import ZoneInfo
 from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import PlannedSpend, User
-from splitledger.handlers.log import ExpenseLogger, money
-from splitledger.llm.schemas import ExpenseDraft
-from splitledger.plans.upcoming import open_days, outlook
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import PlannedSpend, User
+from whatsledger.handlers.log import ExpenseLogger, money
+from whatsledger.llm.schemas import ExpenseDraft
+from whatsledger.plans.upcoming import open_days, outlook
 
 LOG = logging.getLogger(__name__)
 # days ahead to look for the next time a bill is due

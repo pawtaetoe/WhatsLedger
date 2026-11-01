@@ -4,11 +4,11 @@ from datetime import UTC, datetime, timedelta
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from splitledger.db.models import Bill, BillItem, ItemClaim
-from splitledger.split.claims import preview_share
-from splitledger.split.tokens import ClaimTokens
-from splitledger.web import claim as claim_module
-from splitledger.web.claim import ClaimPage, claim_router
+from whatsledger.db.models import Bill, BillItem, ItemClaim
+from whatsledger.split.claims import preview_share
+from whatsledger.split.tokens import ClaimTokens
+from whatsledger.web import claim as claim_module
+from whatsledger.web.claim import ClaimPage, claim_router
 
 
 # a claims store that must never be reached

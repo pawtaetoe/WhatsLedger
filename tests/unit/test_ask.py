@@ -3,9 +3,9 @@ from zoneinfo import ZoneInfo
 
 import pytest
 
-from splitledger.handlers import ask
-from splitledger.handlers.ask import SpendTools, category_arg, day_range, guarded
-from splitledger.plans.afford_sg import SG_FIELDS
+from whatsledger.handlers import ask
+from whatsledger.handlers.ask import SpendTools, category_arg, day_range, guarded
+from whatsledger.plans.afford_sg import SG_FIELDS
 
 SG = ZoneInfo("Asia/Singapore")
 

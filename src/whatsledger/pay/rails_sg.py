@@ -3,8 +3,8 @@ import re
 
 import segno
 
-from splitledger.pay.emvco import payload, tlv
-from splitledger.pay.rails import PayOffer
+from whatsledger.pay.emvco import payload, tlv
+from whatsledger.pay.rails import PayOffer
 
 # a singapore mobile on whatsapp, 65 then 8 or 9 and seven digits
 MOBILE = re.compile(r"65([89]\d{7})")

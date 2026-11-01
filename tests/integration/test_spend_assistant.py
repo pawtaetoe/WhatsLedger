@@ -4,14 +4,14 @@ from zoneinfo import ZoneInfo
 import pytest
 from sqlalchemy import select
 
-from splitledger.contracts.llm import ToolRunResult
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import LedgerEntry, LedgerKind, User
-from splitledger.handlers import ask
-from splitledger.handlers.ask import SpendAssistant, SpendTools
-from splitledger.plans.afford import CORE_RULES, AffordPack
-from splitledger.plans.quota import QuotaBook
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.llm import ToolRunResult
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import LedgerEntry, LedgerKind, User
+from whatsledger.handlers import ask
+from whatsledger.handlers.ask import SpendAssistant, SpendTools
+from whatsledger.plans.afford import CORE_RULES, AffordPack
+from whatsledger.plans.quota import QuotaBook
 
 SG = ZoneInfo("Asia/Singapore")
 ME = "6581234567"

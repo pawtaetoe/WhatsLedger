@@ -1,4 +1,4 @@
-from splitledger.plans.afford import PROPERTY_TYPES, Ask, Means, Rule, Verdict, share_check
+from whatsledger.plans.afford import PROPERTY_TYPES, Ask, Means, Rule, Verdict, share_check
 
 MAS = "MAS rules for Singapore"
 # omv at or below this gets the higher loan limit

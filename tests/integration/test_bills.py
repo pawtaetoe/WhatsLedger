@@ -2,13 +2,13 @@ from datetime import UTC, date, datetime, timedelta
 
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import LedgerEntry, PlannedSpend, User
-from splitledger.handlers import bills as bills_module
-from splitledger.handlers.bills import UpcomingBills
-from splitledger.handlers.log import ExpenseLogger
-from splitledger.llm.schemas import GLOBAL
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import LedgerEntry, PlannedSpend, User
+from whatsledger.handlers import bills as bills_module
+from whatsledger.handlers.bills import UpcomingBills
+from whatsledger.handlers.log import ExpenseLogger
+from whatsledger.llm.schemas import GLOBAL
 
 ME = "6581234567"
 # 9 30 am in singapore on the 30th, rent is due the next day

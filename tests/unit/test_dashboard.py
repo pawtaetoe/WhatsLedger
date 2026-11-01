@@ -4,11 +4,11 @@ from datetime import UTC, datetime, timedelta
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from splitledger.channels.layout import link_key
-from splitledger.handlers.dashboard import bill_links
-from splitledger.split.tokens import ClaimTokens, LoginLinks
-from splitledger.web import dashboard as dashboard_module
-from splitledger.web.dashboard import DashboardPage, dashboard_router
+from whatsledger.channels.layout import link_key
+from whatsledger.handlers.dashboard import bill_links
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.web import dashboard as dashboard_module
+from whatsledger.web.dashboard import DashboardPage, dashboard_router
 
 NOW = datetime(2026, 10, 28, 12, tzinfo=UTC)
 

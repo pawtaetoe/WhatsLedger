@@ -1,10 +1,10 @@
 from starlette.requests import Request
 
-from splitledger.db.models import User
-from splitledger.plans.quota import QuotaBook
-from splitledger.split.overview import Overview
-from splitledger.web.dashboard import TIP_COOKIE, DashboardPage
 from tests.integration.test_plan_page import TOKENS, signed_in
+from whatsledger.db.models import User
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.split.overview import Overview
+from whatsledger.web.dashboard import TIP_COOKIE, DashboardPage
 
 TIP = "add this page to your home screen"
 

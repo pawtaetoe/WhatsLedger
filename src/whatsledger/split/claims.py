@@ -6,10 +6,10 @@ from fractions import Fraction
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant, User
-from splitledger.handlers.bill import MAX_UNITS, even_share, unit_prices
-from splitledger.llm.schemas import unescape
-from splitledger.split.finalise import post_late
+from whatsledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant, User
+from whatsledger.handlers.bill import MAX_UNITS, even_share, unit_prices
+from whatsledger.llm.schemas import unescape
+from whatsledger.split.finalise import post_late
 
 ACTIONS = ("mine", "share", "drop")
 MAX_NAME = 40

@@ -9,14 +9,14 @@ from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from jinja2 import Environment, FileSystemLoader
 
-from splitledger.contracts.transport import Transport
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.dashboard import BILL_DAYS, COOKIE, COOKIE_DAYS, bill_links
-from splitledger.handlers.log import money
-from splitledger.settings import settings
-from splitledger.split.claims import BillView, ClaimBook
-from splitledger.split.tokens import ClaimTokens, LoginLinks
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.dashboard import BILL_DAYS, COOKIE, COOKIE_DAYS, bill_links
+from whatsledger.handlers.log import money
+from whatsledger.settings import settings
+from whatsledger.split.claims import BillView, ClaimBook
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
 
 TEMPLATES = Environment(
     loader=FileSystemLoader(Path(__file__).parent / "templates"), autoescape=True

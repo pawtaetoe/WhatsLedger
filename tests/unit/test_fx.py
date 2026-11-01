@@ -1,7 +1,7 @@
 import httpx
 import respx
 
-from splitledger.split.fx import FX_URL, Rates, convert
+from whatsledger.split.fx import FX_URL, Rates, convert
 
 
 # rates are turned around into the base, cached, and the last good ones kept on failure

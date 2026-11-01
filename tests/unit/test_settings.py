@@ -1,4 +1,4 @@
-from splitledger.settings import Settings
+from whatsledger.settings import Settings
 
 
 # urls from a host are switched to the async driver, ours are left alone

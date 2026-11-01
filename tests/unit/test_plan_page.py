@@ -1,9 +1,9 @@
 import json
 
-from splitledger.plans.frameworks import Framework
-from splitledger.split.tokens import ClaimTokens
-from splitledger.web import plan as plan_module
-from splitledger.web.plan import PlanForm, PlanPage, as_json
+from whatsledger.plans.frameworks import Framework
+from whatsledger.split.tokens import ClaimTokens
+from whatsledger.web import plan as plan_module
+from whatsledger.web.plan import PlanForm, PlanPage, as_json
 
 TOKENS = ClaimTokens("secret")
 PAGE = PlanPage(None, None, TOKENS, None)

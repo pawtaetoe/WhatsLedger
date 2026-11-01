@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from fractions import Fraction
 
-from splitledger.contracts.money import Cents
+from whatsledger.contracts.money import Cents
 
 
 # one bill line, price is the line total in cents

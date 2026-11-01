@@ -6,11 +6,11 @@ from datetime import UTC, datetime
 from sqlalchemy import case, func, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import LedgerEntry, LedgerKind, User
-from splitledger.handlers.log import money
-from splitledger.pay.rails import PayRails
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import LedgerEntry, LedgerKind, User
+from whatsledger.handlers.log import money
+from whatsledger.pay.rails import PayRails
 
 LOG = logging.getLogger(__name__)
 OWE_ALL = ("owe:all", "Everything I owe")

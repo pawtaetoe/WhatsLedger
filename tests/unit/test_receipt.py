@@ -3,12 +3,12 @@ from pathlib import Path
 
 import pytest
 
-from splitledger.contracts.messages import Inbound
-from splitledger.handlers import log as log_module
-from splitledger.handlers.log import READING, RECEIPT_PROMPT, ExpenseLogger, receipt_adds_up
-from splitledger.llm.client import MetaLLM
-from splitledger.llm.schemas import GLOBAL, ReceiptDraft, ReceiptItem
 from tests.fakes import FakeLLM, FakeTransport, MemoryState
+from whatsledger.contracts.messages import Inbound
+from whatsledger.handlers import log as log_module
+from whatsledger.handlers.log import READING, RECEIPT_PROMPT, ExpenseLogger, receipt_adds_up
+from whatsledger.llm.client import MetaLLM
+from whatsledger.llm.schemas import GLOBAL, ReceiptDraft, ReceiptItem
 
 FIXTURES = Path(__file__).parents[1] / "fixtures"
 PHOTOS = sorted((FIXTURES / "receipts").glob("*.jpg"))

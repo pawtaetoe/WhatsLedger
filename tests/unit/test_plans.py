@@ -5,10 +5,10 @@ import httpx
 import pytest
 import respx
 
-from splitledger.channels.whatsapp import WhatsAppTransport, parse_inbound
-from splitledger.handlers.plan import parse_income
-from splitledger.plans.frameworks import PRESETS, pay_yourself_first
-from splitledger.plans.quota import days_left, period_key, period_start, quota_cents
+from whatsledger.channels.whatsapp import WhatsAppTransport, parse_inbound
+from whatsledger.handlers.plan import parse_income
+from whatsledger.plans.frameworks import PRESETS, pay_yourself_first
+from whatsledger.plans.quota import days_left, period_key, period_start, quota_cents
 
 WEDNESDAY = date(2026, 10, 28)
 

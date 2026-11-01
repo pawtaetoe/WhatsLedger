@@ -1,13 +1,13 @@
 from zoneinfo import ZoneInfo
 
-from splitledger.db.models import BudgetPlan, LedgerEntry, LedgerKind, User
-from splitledger.handlers.ask import SpendTools, owed_text
-from splitledger.plans.afford import CORE_RULES
-from splitledger.plans.frameworks import PRESETS
-from splitledger.plans.quota import QuotaBook
-from splitledger.split.finalise import BillCloser
-from splitledger.split.overview import Overview
 from tests.integration.test_finalise import claimed
+from whatsledger.db.models import BudgetPlan, LedgerEntry, LedgerKind, User
+from whatsledger.handlers.ask import SpendTools, owed_text
+from whatsledger.plans.afford import CORE_RULES
+from whatsledger.plans.frameworks import PRESETS
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.split.finalise import BillCloser
+from whatsledger.split.overview import Overview
 
 
 # before closing the bill shows as open with progress, after it the balances match the ledger

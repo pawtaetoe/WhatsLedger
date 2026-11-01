@@ -7,10 +7,10 @@ import httpx
 import pytest
 import respx
 
-from splitledger.contracts.llm import Tool
-from splitledger.llm.audio import to_wav
-from splitledger.llm.client import MetaLLM
-from splitledger.llm.schemas import SmokeResult
+from whatsledger.contracts.llm import Tool
+from whatsledger.llm.audio import to_wav
+from whatsledger.llm.client import MetaLLM
+from whatsledger.llm.schemas import SmokeResult
 
 CHAT_URL = "https://api.meta.ai/v1/chat/completions"
 

@@ -1,8 +1,8 @@
-from splitledger.handlers.currency import currency_for, timezone_for
-from splitledger.handlers.router import MessageReader
-from splitledger.llm.schemas import GLOBAL, Regions, by_country_code
-from splitledger.llm.schemas_sg import SG
 from tests.fakes import FakeLLM
+from whatsledger.handlers.currency import currency_for, timezone_for
+from whatsledger.handlers.router import MessageReader
+from whatsledger.llm.schemas import GLOBAL, Regions, by_country_code
+from whatsledger.llm.schemas_sg import SG
 
 
 # the country calling code picks the currency, the longest match wins, unknown falls back

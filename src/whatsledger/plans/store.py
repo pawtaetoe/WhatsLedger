@@ -4,9 +4,9 @@ from sqlalchemy import update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from splitledger.db.models import BudgetPlan, User
-from splitledger.plans.frameworks import Framework
-from splitledger.plans.quota import bucket_quota
+from whatsledger.db.models import BudgetPlan, User
+from whatsledger.plans.frameworks import Framework
+from whatsledger.plans.quota import bucket_quota
 
 
 # each part's amount for one period on a monthly take home pay

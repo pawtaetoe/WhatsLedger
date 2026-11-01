@@ -3,9 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from splitledger.handlers.router import PROMPT
-from splitledger.llm.client import MetaLLM, fixture_path
-from splitledger.llm.schemas import MessageResult
+from whatsledger.handlers.router import PROMPT
+from whatsledger.llm.client import MetaLLM, fixture_path
+from whatsledger.llm.schemas import MessageResult
 
 FIXTURES = Path(__file__).parents[1] / "fixtures"
 ROWS = json.loads((FIXTURES / "messages.json").read_text(encoding="utf-8"))

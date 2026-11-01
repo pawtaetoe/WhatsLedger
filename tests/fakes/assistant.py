@@ -1,5 +1,5 @@
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
 
 
 # assistant fake that records each question it was asked

@@ -5,7 +5,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.db.models import ChatState
+from whatsledger.db.models import ChatState
 
 
 # chat state in postgres, expired rows are ignored and cleared as new ones are written

@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from typing import get_args
 
-from splitledger.llm.schemas import Category, CustomPlan
-from splitledger.plans.frameworks import Framework
+from whatsledger.llm.schemas import Category, CustomPlan
+from whatsledger.plans.frameworks import Framework
 
 MAX_BUCKETS = 6
 MAX_NAME = 20

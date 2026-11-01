@@ -7,11 +7,11 @@ from zoneinfo import ZoneInfo
 from sqlalchemy import delete, select
 from sqlalchemy.dialects.postgresql import insert
 
-from splitledger.db import models
-from splitledger.db.models import LedgerEntry, LedgerKind, LedgerSource, LedgerStatus, User
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.router import LOCALES
-from splitledger.settings import settings
+from whatsledger.db import models
+from whatsledger.db.models import LedgerEntry, LedgerKind, LedgerSource, LedgerStatus, User
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.router import LOCALES
+from whatsledger.settings import settings
 
 # fixed namespace so each seeded row always gets the same id
 NAMESPACE = uuid.UUID("5b1e4d3c-9a7f-4e2b-8c61-0d2f6a9e4b17")

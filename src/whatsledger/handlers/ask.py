@@ -10,17 +10,17 @@ from zoneinfo import ZoneInfo
 from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.llm import LLM, Tool
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import LedgerEntry, LedgerKind, PlannedSpend, User
-from splitledger.handlers.log import money
-from splitledger.llm.schemas import Category, by_country_code
-from splitledger.plans import afford
-from splitledger.plans.afford import AffordPack, Ask, Means, Rule, Spending, assess, to_cents
-from splitledger.plans.quota import QuotaBook
-from splitledger.plans.upcoming import EVERY, open_days, outlook
-from splitledger.split.overview import Overview
+from whatsledger.contracts.llm import LLM, Tool
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import LedgerEntry, LedgerKind, PlannedSpend, User
+from whatsledger.handlers.log import money
+from whatsledger.llm.schemas import Category, by_country_code
+from whatsledger.plans import afford
+from whatsledger.plans.afford import AffordPack, Ask, Means, Rule, Spending, assess, to_cents
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.plans.upcoming import EVERY, open_days, outlook
+from whatsledger.split.overview import Overview
 
 LOG = logging.getLogger(__name__)
 PROMPT = (Path(__file__).parents[1] / "llm" / "prompts" / "assistant.md").read_text(

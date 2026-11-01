@@ -5,10 +5,10 @@ from datetime import UTC, datetime
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.contracts.money import Cents
-from splitledger.db import models
-from splitledger.db.models import Allocation, Bill, BillItem, BillStatus, ItemClaim, Participant
-from splitledger.split import engine
+from whatsledger.contracts.money import Cents
+from whatsledger.db import models
+from whatsledger.db.models import Allocation, Bill, BillItem, BillStatus, ItemClaim, Participant
+from whatsledger.split import engine
 
 # what to do with items nobody claimed
 LEFTOVERS = ("ask", "even", "mine")

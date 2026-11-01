@@ -1,8 +1,8 @@
 import pytest
 
-from splitledger.llm.schemas import BucketDraft, CustomPlan
-from splitledger.plans.custom import check_plan, fits_income, monthly_cap
-from splitledger.plans.quota import bucket_quota
+from whatsledger.llm.schemas import BucketDraft, CustomPlan
+from whatsledger.plans.custom import check_plan, fits_income, monthly_cap
+from whatsledger.plans.quota import bucket_quota
 
 
 # a plan with these parts

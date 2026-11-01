@@ -1,8 +1,8 @@
 import binascii
 
-from splitledger.pay.emvco import crc16, payload, tlv
-from splitledger.pay.rails import PLAIN, PayRails
-from splitledger.pay.rails_sg import PayNow
+from whatsledger.pay.emvco import crc16, payload, tlv
+from whatsledger.pay.rails import PLAIN, PayRails
+from whatsledger.pay.rails_sg import PayNow
 
 GOLDEN = (
     "00020101021226380009SG.PAYNOW010100211+6581234567030105204000053037025405"

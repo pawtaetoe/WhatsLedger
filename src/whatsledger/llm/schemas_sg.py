@@ -1,4 +1,4 @@
-from splitledger.llm.schemas import GLOBAL
+from whatsledger.llm.schemas import GLOBAL
 
 # singapore words on top of the global ones
 SG = GLOBAL.extend(

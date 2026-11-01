@@ -1,7 +1,7 @@
-from splitledger.contracts.messages import Inbound
-from splitledger.handlers.log import ExpenseLogger, ogg_seconds
-from splitledger.llm.schemas import GLOBAL
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.handlers.log import ExpenseLogger, ogg_seconds
+from whatsledger.llm.schemas import GLOBAL
 
 
 # minimal ogg page whose granule position says how long the clip plays

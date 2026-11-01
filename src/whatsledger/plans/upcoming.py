@@ -3,7 +3,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 
-from splitledger.db.models import PlannedSpend
+from whatsledger.db.models import PlannedSpend
 
 EVERY = ("once", "week", "month", "year")
 # days ahead that one off plans still count as coming up

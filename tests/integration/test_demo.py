@@ -3,28 +3,28 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import Bill, BillStatus, LedgerEntry, LedgerKind, User
-from splitledger.handlers.ask import SpendAssistant
-from splitledger.handlers.bill import GroupBills
-from splitledger.handlers.bills import UpcomingBills
-from splitledger.handlers.claim import DONE, ClaimChat
-from splitledger.handlers.currency import CurrencyChoice
-from splitledger.handlers.dashboard import DashboardLink
-from splitledger.handlers.log import ExpenseLogger
-from splitledger.handlers.plan import PlanManager
-from splitledger.handlers.router import PROMPT, MessageReader, Router
-from splitledger.handlers.settle import SettleUp, paid_button
-from splitledger.llm.schemas import ExpenseDraft, MessageResult, ReceiptDraft, ReceiptItem
-from splitledger.llm.schemas_sg import SG
-from splitledger.pay.rails import PayRails
-from splitledger.pay.rails_sg import PayNow
-from splitledger.plans.afford import CORE_RULES, AffordPack
-from splitledger.plans.quota import QuotaBook
-from splitledger.split.claims import ClaimBook
-from splitledger.split.overview import Overview
-from splitledger.split.tokens import ClaimTokens, LoginLinks
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import Bill, BillStatus, LedgerEntry, LedgerKind, User
+from whatsledger.handlers.ask import SpendAssistant
+from whatsledger.handlers.bill import GroupBills
+from whatsledger.handlers.bills import UpcomingBills
+from whatsledger.handlers.claim import DONE, ClaimChat
+from whatsledger.handlers.currency import CurrencyChoice
+from whatsledger.handlers.dashboard import DashboardLink
+from whatsledger.handlers.log import ExpenseLogger
+from whatsledger.handlers.plan import PlanManager
+from whatsledger.handlers.router import PROMPT, MessageReader, Router
+from whatsledger.handlers.settle import SettleUp, paid_button
+from whatsledger.llm.schemas import ExpenseDraft, MessageResult, ReceiptDraft, ReceiptItem
+from whatsledger.llm.schemas_sg import SG
+from whatsledger.pay.rails import PayRails
+from whatsledger.pay.rails_sg import PayNow
+from whatsledger.plans.afford import CORE_RULES, AffordPack
+from whatsledger.plans.quota import QuotaBook
+from whatsledger.split.claims import ClaimBook
+from whatsledger.split.overview import Overview
+from whatsledger.split.tokens import ClaimTokens, LoginLinks
 
 TOMMY, ANNA, BEN = "6581234567", "6591111111", "6592222222"
 TOKENS = ClaimTokens("secret")

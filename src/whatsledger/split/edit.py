@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from splitledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant
+from whatsledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant
 
 # lines a bill can have after editing
 MAX_LINES = 60

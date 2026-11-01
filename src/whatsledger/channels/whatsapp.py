@@ -9,13 +9,13 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 from sqlalchemy.exc import IntegrityError
 
-from splitledger.channels.layout import fit, split_choice, unique_labels, with_descriptions
-from splitledger.contracts.messages import Inbound
-from splitledger.contracts.transport import Transport
-from splitledger.db.models import ProcessedMessage
-from splitledger.db.session import SessionFactory
-from splitledger.handlers.router import Router, message_router
-from splitledger.settings import settings
+from whatsledger.channels.layout import fit, split_choice, unique_labels, with_descriptions
+from whatsledger.contracts.messages import Inbound
+from whatsledger.contracts.transport import Transport
+from whatsledger.db.models import ProcessedMessage
+from whatsledger.db.session import SessionFactory
+from whatsledger.handlers.router import Router, message_router
+from whatsledger.settings import settings
 
 GRAPH_BASE = "https://graph.facebook.com/v21.0"
 # message types the bot answers with what it can read, reactions stay silent

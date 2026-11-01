@@ -1,12 +1,12 @@
 from sqlalchemy import select
 
-from splitledger.contracts.messages import Inbound
-from splitledger.db.models import BudgetPlan, User
-from splitledger.handlers.log import ExpenseLogger, quick_parse
-from splitledger.handlers.plan import PlanManager
-from splitledger.llm.schemas import GLOBAL, BucketDraft, CustomPlan
-from splitledger.plans.quota import QuotaBook
 from tests.fakes import FakeLLM, FakeTransport
+from whatsledger.contracts.messages import Inbound
+from whatsledger.db.models import BudgetPlan, User
+from whatsledger.handlers.log import ExpenseLogger, quick_parse
+from whatsledger.handlers.plan import PlanManager
+from whatsledger.llm.schemas import GLOBAL, BucketDraft, CustomPlan
+from whatsledger.plans.quota import QuotaBook
 
 ME = "14155550100"
 
