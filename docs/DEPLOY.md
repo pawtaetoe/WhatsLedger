@@ -8,7 +8,7 @@ Railway works too (`railway.json` is kept), but its sign up is paused for now.
 ## 1. Create everything from the blueprint
 
 1. Sign in at render.com with GitHub.
-2. **New** → **Blueprint** → pick the SplitLedger repo.
+2. **New** → **Blueprint** → pick the WhatsLedger repo.
    Render reads `render.yaml` and shows a web service `splitledger` and a
    database `splitledger-db`.
 3. It asks for the values marked secret. Paste them from your `.env`:

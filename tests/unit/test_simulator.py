@@ -1,9 +1,13 @@
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from splitledger.channels.simulator import simulator
+from splitledger.channels.simulator import dev_router, simulator
 from splitledger.handlers.router import STALE
-from splitledger.main import app
 from tests.fakes.router import fake_router
+
+# the simulator routes on their own, main only mounts them when ENV is dev
+app = FastAPI()
+app.include_router(dev_router)
 
 
 # posting text reaches the router and replies through transport

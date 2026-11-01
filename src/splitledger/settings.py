@@ -9,7 +9,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    env: str = "dev"
+    # prod unless .env says dev, so a deploy that forgets it never serves the simulator
+    env: str = "prod"
     database_url: str = "postgresql+asyncpg://splitledger:splitledger@localhost:5432/splitledger"
     whatsapp_access_token: str = ""
     whatsapp_app_secret: str = ""
@@ -24,7 +25,7 @@ class Settings(BaseSettings):
     public_base_url: str = ""
     meta_api_key: str = ""
     llm_base_url: str = "https://api.meta.ai/v1"
-    llm_model: str = ""
+    llm_model: str = "muse-spark-1.3"
     # model for voice notes
     voice_model: str = "muse-voice-transcribe-1.0"
     app_secret: str = ""

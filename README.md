@@ -45,7 +45,7 @@ bill split adds up to the cent.
 You need Docker, [uv](https://docs.astral.sh/uv/), ffmpeg (for voice notes) and a Meta Model API key.
 
 ```bash
-git clone <this repo> && cd SplitLedger
+git clone https://github.com/pawtaetoe/WhatsLedger.git && cd WhatsLedger
 cp .env.example .env        # set META_API_KEY and LLM_MODEL
 make setup                  # install packages and git hooks
 make dev                    # start postgres, run migrations, serve on :8000
@@ -145,3 +145,7 @@ numbers with no pack of their own. The core works in any currency.
 | Google Wallet budget card | A pass showing what is left this week, refreshed after every log |
 | More region packs | India (UPI), Malaysia (DuitNow), Thailand (PromptPay), Brazil (Pix), on the same QR encoder |
 | Auto-import | Spending appears without typing, through bank open-banking APIs |
+
+## License
+
+MIT, see [LICENSE](LICENSE).
