@@ -166,7 +166,7 @@ class TwilioTransport:
 
     # one template per kind and button count, found or created once
     async def _template_sid(self, count: int, kind: str = "buttons") -> str:
-        name = f"splitledger_{kind}_{count}"
+        name = f"whatsledger_{kind}_{count}"
         if name in self._templates:
             return self._templates[name]
         auth = (self._sid, self._token)
@@ -206,7 +206,7 @@ class TwilioTransport:
     # one call to action template per button label and app address, found or created once
     async def _link_sid(self, label: str, base: str) -> str:
         digest = hashlib.sha256(f"{label}|{base}".encode()).hexdigest()[:10]
-        name = f"splitledger_link_{digest}"
+        name = f"whatsledger_link_{digest}"
         if name in self._links:
             return self._links[name]
         auth = (self._sid, self._token)

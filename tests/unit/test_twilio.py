@@ -298,4 +298,4 @@ async def test_list_picker():
     template = json.loads(created.calls.last.request.content)
     picker = template["types"]["twilio/list-picker"]
     assert picker["items"][1] == {"item": "{{5}}", "id": "{{6}}", "description": "{{7}}"}
-    assert template["friendly_name"] == "splitledger_list_4"
+    assert template["friendly_name"] == "whatsledger_list_4"

@@ -9,8 +9,8 @@ Railway works too (`railway.json` is kept), but its sign up is paused for now.
 
 1. Sign in at render.com with GitHub.
 2. **New** → **Blueprint** → pick the WhatsLedger repo.
-   Render reads `render.yaml` and shows a web service `splitledger` and a
-   database `splitledger-db`.
+   Render reads `render.yaml` and shows a web service `whatsledger` and a
+   database `whatsledger-db`.
 3. It asks for the values marked secret. Paste them from your `.env`:
    `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_WHATSAPP_FROM`,
    `META_API_KEY`, `LLM_MODEL`, `EXCHANGE_RATE_API_KEY`.
@@ -22,8 +22,8 @@ database tables are created on every start.
 
 ## 2. Set the public address
 
-Open the `splitledger` service. Its address is at the top, for example
-`https://splitledger.onrender.com`. Copy it into **Environment** →
+Open the `whatsledger` service. Its address is at the top, for example
+`https://whatsledger.onrender.com`. Copy it into **Environment** →
 `PUBLIC_BASE_URL` → **Save**. Render redeploys.
 
 Check it works: open `<address>/healthz`, it should say `{"ok":true}`.
