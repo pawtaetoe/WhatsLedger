@@ -30,4 +30,5 @@ def test_regions_by_number():
     reader = MessageReader(FakeLLM(), regions)
     assert reader.by_rules("kopi 2.20", "6581234567").intent == "log"
     assert reader.by_rules("kopi 2.20", "447700900123").intent == "unclear"
+    assert reader.by_rules("laksa 5.50", "6581234567").intent == "log"
     assert by_country_code("85212345678", {"85": "a", "852": "b"}, "c") == "b"

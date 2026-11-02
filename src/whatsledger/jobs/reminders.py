@@ -8,10 +8,10 @@ from whatsledger.handlers.bills import UpcomingBills
 
 LOG = logging.getLogger(__name__)
 # seconds between checks for bills to remind about and bills ready to close
-CHECK_SECONDS = 60
+CHECK_SECONDS = 15
 
 
-# check for due reminders and bills to close every minute while the app runs
+# check for due reminders and bills to close every 15 seconds while the app runs
 async def reminder_loop(bills: UpcomingBills, group: GroupBills, transport: Transport) -> None:
     while True:
         try:

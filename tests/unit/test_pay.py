@@ -6,7 +6,7 @@ from whatsledger.pay.rails_sg import PayNow
 
 GOLDEN = (
     "00020101021226380009SG.PAYNOW010100211+6581234567030105204000053037025405"
-    "10.005802SG5902NA6009Singapore62220118SplitLedger K7Q2AB6304"
+    "10.005802SG5902NA6009Singapore62220118WhatsLedger K7Q2AB6304"
 )
 
 
@@ -28,14 +28,14 @@ def test_tlv():
 
 # golden paynow payload for 10 dollars to a mobile, fixed amount, bill code as reference
 def test_paynow_payload():
-    code = PayNow().code("81234567", 1000, "SplitLedger K7Q2AB")
+    code = PayNow().code("81234567", 1000, "WhatsLedger K7Q2AB")
     assert code == GOLDEN + crc16(GOLDEN)
 
 
 # paynow needs sgd and a singapore mobile, the qr is a png
 def test_paynow_offer():
     rail = PayNow()
-    offer = rail.offer("6581234567", 1000, "SGD", "SplitLedger K7Q2AB")
+    offer = rail.offer("6581234567", 1000, "SGD", "WhatsLedger K7Q2AB")
     assert offer is not None and offer.qr is not None and offer.qr.startswith(b"\x89PNG")
     assert "8123 4567" in offer.text and offer.label == "PayNow to 8123 4567"
     assert rail.offer("6581234567", 1000, "USD", "x") is None

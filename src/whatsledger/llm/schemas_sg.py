@@ -5,7 +5,7 @@ SG = GLOBAL.extend(
     "SGD",
     ("$", "S$"),
     {
-        "Dining": ("kopi", "teh", "makan", "hawker", "prata"),
+        "Dining": ("kopi", "teh", "makan", "hawker", "prata", "laksa"),
         "Groceries": ("ntuc", "fairprice"),
         "Transport": ("mrt", "grab", "gojek", "ezlink"),
         "Shopping": ("shopee", "lazada", "qoo10"),
