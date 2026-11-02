@@ -170,6 +170,9 @@ class ClaimChat:
     # item buttons, share buttons and the check buttons
     async def on_button(self, inbound: Inbound, button_id: str, transport: Transport) -> None:
         parts = button_id.split(":")
+        if len(parts) == 3 and parts[1] == "mine":
+            await self.by_code(inbound, f"claim {parts[2]}", transport)
+            return
         if len(parts) == 4 and parts[1] in ("pick", "share") and parts[3].isdigit():
             bill = await self._book.open_bill(parts[2])
             if bill is None:

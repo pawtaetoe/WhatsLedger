@@ -49,6 +49,7 @@ READY = (
     "Forward the next message to your group. Each friend replies with what they had.\n"
     "It closes by itself once everyone's in, and everyone is told what they owe.\n"
     "A line misread? Tap Fix the items before you forward it.\n"
+    "Had some too? Tap Claim my items, shared dishes included.\n"
     f"{CLOSE_EARLY}"
 )
 UPDATED = (
@@ -291,7 +292,8 @@ class GroupBills:
             await transport.send_text(to, ready)
             await transport.send_text(to, even_text(bill, chat_url))
             return
-        await transport.send_buttons(to, ready.format(bill.code), [edit_button(bill)])
+        mine = (f"claim:mine:{bill.code}", "Claim my items")
+        await transport.send_buttons(to, ready.format(bill.code), [edit_button(bill), mine])
         await transport.send_text(to, forward_text(bill, items, chat_url))
 
     # after the payer fixed the items, a fresh message to forward instead of the first one
