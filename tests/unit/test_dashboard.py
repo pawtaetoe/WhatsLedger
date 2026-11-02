@@ -93,3 +93,19 @@ def test_bill_links_are_scoped():
     assert bill_links(tokens, "K7Q2AB").read(link, NOW + timedelta(days=15)) is None
     assert bill_links(tokens, "ZZZZZZ").read(link, NOW) is None
     assert LoginLinks(tokens, 900).read(link, NOW) is None
+
+
+# the bill button from the chat signs in with its bill-only token and opens that bill
+def test_bill_link_opens_bill(monkeypatch):
+    tokens = ClaimTokens("secret")
+    page = DashboardPage(tokens, NoOverview(), False)
+    monkeypatch.setattr(dashboard_module, "dashboard_page", page)
+    app = FastAPI()
+    app.include_router(dashboard_router)
+    web = TestClient(app)
+    token = bill_links(tokens, "k7q2ab").make(str(uuid.uuid4()), datetime.now(UTC))
+    went = web.get(f"/b/K7Q2AB/{token}", follow_redirects=False)
+    assert went.status_code == 303 and went.headers["location"].startswith("/c/")
+    assert "set-cookie" in went.headers
+    # a phone that is not signed in gets the expired page for a bad link
+    assert TestClient(app).get("/b/K7Q2AB/bad", follow_redirects=False).status_code == 401

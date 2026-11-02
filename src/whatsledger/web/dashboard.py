@@ -11,7 +11,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse, Response
 
 from whatsledger.contracts.transport import Transport
 from whatsledger.db.session import SessionFactory
-from whatsledger.handlers.dashboard import COOKIE, COOKIE_DAYS, LINK_MINUTES, PAGES
+from whatsledger.handlers.dashboard import COOKIE, COOKIE_DAYS, LINK_MINUTES, PAGES, bill_links
 from whatsledger.handlers.router import book, rates
 from whatsledger.handlers.settle import SettleUp
 from whatsledger.pay.rails import PayRails
@@ -64,9 +64,11 @@ class DashboardPage:
 
     # swap the short link for a cookie and go to the dashboard
     # an old link still works on a phone that is already signed in
-    def sign_in(self, token: str, request: Request, to: str = "me") -> Response:
+    # a bill link is signed for one bill, so its code picks the signer
+    def sign_in(self, token: str, request: Request, to: str = "me", bill: str = "") -> Response:
         now = datetime.now(UTC)
-        user_id = self._links.read(token, now)
+        links = bill_links(self._tokens, bill) if bill else self._links
+        user_id = links.read(token, now)
         if user_id is None and self.user_of(request) is not None:
             return RedirectResponse(self._target(to, now), 303)
         if user_id is None:
@@ -179,6 +181,12 @@ async def home() -> Response:
 @dashboard_router.get("/d/{token}")
 async def sign_in(token: str, request: Request, to: str = "me") -> Response:
     return dashboard_page.sign_in(token, request, to)
+
+
+# the personal bill link from the chat, signs in and opens that bill
+@dashboard_router.get("/b/{code}/{token}")
+async def bill_sign_in(code: str, token: str, request: Request) -> Response:
+    return dashboard_page.sign_in(token, request, f"bill-{code}", code)
 
 
 # the dashboard
