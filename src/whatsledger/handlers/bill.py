@@ -13,6 +13,7 @@ from whatsledger.channels.layout import SEP
 from whatsledger.contracts.messages import Inbound
 from whatsledger.contracts.transport import Transport
 from whatsledger.db.models import Bill, BillItem, BillStatus, ItemClaim, Participant, User
+from whatsledger.handlers.currency import COMMON, KNOWN
 from whatsledger.handlers.dashboard import LINK_MINUTES, SEE_ALL, dashboard_url
 from whatsledger.handlers.log import ExpenseLogger, ensure_user, money, receipt_adds_up
 from whatsledger.handlers.settle import OWE_ALL, SettleUp
@@ -75,6 +76,7 @@ READY_EVEN = (
     "Forward the next message to your group. It closes by itself once everyone has joined.\n"
     f"{CLOSE_EARLY}"
 )
+CHOOSE_CURRENCY = "*Which currency is this receipt in?*\nThe amounts stay the same."
 UNKNOWN = "*I can't find that bill*\nSend a new receipt photo with the caption _split_."
 NOT_PAYER = "*Only the person who paid can change this bill*"
 HOW = "*How should I split {}?*\n{}"
@@ -187,6 +189,11 @@ def edit_button(bill: Bill) -> tuple[str, str]:
     return f"bill:edit:{bill.code}", "Fix the items"
 
 
+# the button to relabel a receipt read in the wrong dollar
+def currency_button(bill: Bill) -> tuple[str, str]:
+    return f"bill:cur:{bill.code}", f"Not {bill.currency}?"
+
+
 # links that let the payer edit one bill for an hour
 def edit_links(tokens: ClaimTokens, code: str) -> LoginLinks:
     return LoginLinks(tokens, EDIT_MINUTES * 60, f"edit-{code.upper()}")
@@ -289,11 +296,12 @@ class GroupBills:
             ready = READY_EVEN.format(
                 bill.even_ways, bill.code, money(each, bill.currency), money(mine, bill.currency)
             )
-            await transport.send_text(to, ready)
+            await transport.send_buttons(to, ready, [currency_button(bill)])
             await transport.send_text(to, even_text(bill, chat_url))
             return
         claim = (f"claim:mine:{bill.code}", "Claim my items")
-        await transport.send_buttons(to, ready.format(bill.code), [edit_button(bill), claim])
+        buttons = [edit_button(bill), claim, currency_button(bill)]
+        await transport.send_buttons(to, ready.format(bill.code), buttons)
         await transport.send_text(to, forward_text(bill, items, chat_url))
 
     # after the payer fixed the items, a fresh message to forward instead of the first one
@@ -335,9 +343,42 @@ class GroupBills:
         if action == "edit":
             await self._edit_link(inbound, transport, bill)
             return
+        if action == "cur":
+            await self._currency(inbound, transport, bill, choice)
+            return
         await self._close(inbound, transport, bill, choice if action == "rest" else (
             "force" if action == "force" else "ask"
         ))
+
+    # offer the usual currencies, then relabel the bill and send a fresh message to forward
+    async def _currency(
+        self, inbound: Inbound, transport: Transport, bill: Bill, choice: str
+    ) -> None:
+        if bill.status != BillStatus.OPEN:
+            await transport.send_text(inbound.user_id, CLOSED_ALREADY)
+            return
+        if choice == "ask":
+            async with self._sessions() as session:
+                payer = await session.get(User, bill.payer_id)
+            codes = list(dict.fromkeys(
+                [payer.currency if payer else bill.currency, bill.currency, *COMMON]
+            ))[:10]
+            buttons = [(f"bill:cur:{bill.code}:{code}", code) for code in codes]
+            await transport.send_buttons(inbound.user_id, CHOOSE_CURRENCY, buttons)
+            return
+        if choice not in KNOWN:
+            await transport.send_text(inbound.user_id, UNKNOWN)
+            return
+        async with self._sessions() as session:
+            fresh = await session.get(Bill, bill.id)
+            if fresh is None:
+                return
+            fresh.currency = choice
+            items = list((await session.execute(
+                select(BillItem).where(BillItem.bill_id == bill.id).order_by(BillItem.position)
+            )).scalars())
+            await session.commit()
+        await self._send(inbound.user_id, transport, fresh, items, UPDATED)
 
     # a link to fix the items, only while no friend has joined
     async def _edit_link(self, inbound: Inbound, transport: Transport, bill: Bill) -> None:

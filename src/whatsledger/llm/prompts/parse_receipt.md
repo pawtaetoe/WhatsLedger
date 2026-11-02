@@ -6,6 +6,6 @@ tax_cents is tax added on top of the subtotal, such as GST, VAT or sales tax. Us
 discount_cents is any discount taken off, otherwise 0.
 total_cents is the final amount paid, or null when you cannot read it.
 vendor is the shop or restaurant name, or null.
-currency is the ISO code when printed or clearly implied, otherwise null.
+currency is the ISO code when the code, a country specific symbol such as S$ or US$, or the country is printed. A bare $ is not enough, use null for it.
 category is one of Dining, Groceries, Transport, Shopping, Bills, Entertainment, Health, Travel, Other.
 Write names with their real letters, like Zürcher or Rösti, never escape codes.
