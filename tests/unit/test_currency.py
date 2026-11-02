@@ -32,3 +32,16 @@ def test_regions_by_number():
     assert reader.by_rules("kopi 2.20", "447700900123").intent == "unclear"
     assert reader.by_rules("laksa 5.50", "6581234567").intent == "log"
     assert by_country_code("85212345678", {"85": "a", "852": "b"}, "c") == "b"
+
+
+# a receipt the model read as USD takes the payer's own dollar, real foreign money stays
+def test_receipt_currency():
+    from whatsledger.db.models import User
+    from whatsledger.handlers.bill import receipt_currency
+    from whatsledger.llm.schemas import ReceiptDraft
+
+    sg = User(wa_user_id="6581234567", currency="SGD")
+    assert receipt_currency(ReceiptDraft(currency="USD"), sg, GLOBAL) == "SGD"
+    assert receipt_currency(ReceiptDraft(), sg, GLOBAL) == "SGD"
+    assert receipt_currency(ReceiptDraft(currency="EUR"), sg, GLOBAL) == "EUR"
+    assert receipt_currency(ReceiptDraft(currency="USD"), User(currency="EUR"), GLOBAL) == "USD"

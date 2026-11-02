@@ -189,6 +189,18 @@ def edit_button(bill: Bill) -> tuple[str, str]:
     return f"bill:edit:{bill.code}", "Fix the items"
 
 
+# dollars a bare $ could mean, the model guesses USD for it
+DOLLARS = frozenset({"USD", "SGD", "AUD", "CAD", "NZD", "HKD"})
+
+
+# the receipt's currency, but a USD guess becomes the payer's own dollar, they can change it
+def receipt_currency(receipt: ReceiptDraft, payer: User | None, locale: Locale) -> str:
+    home = payer.currency if payer is not None else locale.currency
+    if receipt.currency is None or (receipt.currency == "USD" and home in DOLLARS):
+        return home
+    return receipt.currency
+
+
 # the button to relabel a receipt read in the wrong dollar
 def currency_button(bill: Bill) -> tuple[str, str]:
     return f"bill:cur:{bill.code}", f"Not {bill.currency}?"
@@ -662,9 +674,7 @@ class GroupBills:
                     payer.display_name = inbound.name
                 bill = Bill(
                     id=uuid.uuid4(), code=new_code(), payer_id=user_id, vendor=receipt.vendor,
-                    currency=receipt.currency or (
-                        payer.currency if payer is not None else self._locale.currency
-                    ),
+                    currency=receipt_currency(receipt, payer, self._locale),
                     category=receipt.category, even_ways=ways,
                     subtotal=sum(item.price_cents for item in receipt.items),
                     service=receipt.service_cents, tax=receipt.tax_cents,
