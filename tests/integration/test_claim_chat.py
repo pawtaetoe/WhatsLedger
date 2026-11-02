@@ -143,8 +143,8 @@ async def test_quiet_caption(sessions):
     assert transport.sent_text == [] and transport.sent_buttons == []
 
 
-# the list also carries the person's own link to the bill page
-async def test_code_sends_bill_link(sessions):
+# with a few dishes left the buttons are enough, no long link in the text
+async def test_code_buttons_without_link(sessions):
     await seed(sessions)
     links = FakeLinks()
     transport = FakeTransport()
@@ -152,8 +152,7 @@ async def test_code_sends_bill_link(sessions):
         text(ANNA, "CLAIM K7Q2AB", "Anna"), "CLAIM K7Q2AB", transport
     )
     assert links.bills == ["K7Q2AB"]
-    page = "Or tick them on the web:\nhttps://sl.test/b/K7Q2AB/token"
-    assert transport.sent_buttons[-1][1].endswith(page)
+    assert "https://" not in transport.sent_buttons[-1][1]
 
 
 # after the list, bare numbers claim on that bill without the code

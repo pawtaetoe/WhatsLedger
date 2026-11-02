@@ -253,9 +253,8 @@ class ClaimChat:
         free = [(n, line) for n, line in enumerate(view.lines, 1) if not line.holders]
         buttons = [(f"claim:pick:{bill.code}:{n}", f"{n}. {line.name}") for n, line in free]
         if buttons and len(buttons) <= MAX_CHOICES:
-            # a message has either reply buttons or a link button, so the link stays in the text
-            page = f"\n\nOr tick them on the web:\n{link}" if link else ""
-            await transport.send_buttons(inbound.user_id, text + page, buttons)
+            # a few dishes left fit as buttons, which beat a long link in the text
+            await transport.send_buttons(inbound.user_id, text, buttons)
             return
         if link:
             await transport.send_link(inbound.user_id, text, "Tick on the web", link)

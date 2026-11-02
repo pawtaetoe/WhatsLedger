@@ -151,7 +151,7 @@ def test_purchase_facts_with_upcoming():
     assert facts[:6] == [
         "SGD 300.00 is about 6% of a month's pay (SGD 4,500.00).",
         "Spent so far this month: SGD 1,200.00.",
-        "Still to pay this month: SGD 570.00 for trip, phone, gym.",
+        "Still to pay this month: SGD 570.00 for trip, phone and gym.",
         "Left this month after bills: SGD 2,730.00. This is about 10% of it.",
         "Repeating bills come to about SGD 1,336.66 a month.",
         "Coming up later: present SGD 150.00 on 3 Dec."

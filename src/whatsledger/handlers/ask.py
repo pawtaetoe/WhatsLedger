@@ -43,7 +43,9 @@ ALL_SQUARE = "*You're all square*\nNobody owes anybody right now."
 NEXT_DAYS = 400
 DAYS = {"type": "string", "description": "local calendar day as YYYY-MM-DD"}
 RANGE = {"start": DAYS, "end": {**DAYS, "description": "last local day, inclusive"}}
-CATEGORY = {"type": "string", "enum": CATEGORIES}
+# a group the model can ask for by one name, food is what people mean by eating
+GROUPS = {"Food": ("Dining", "Groceries")}
+CATEGORY = {"type": "string", "enum": [*CATEGORIES, *GROUPS]}
 Query = Callable[[dict[str, Any]], Awaitable[dict[str, Any]]]
 AMOUNT = {"type": "number", "description": "plain amount in their currency, not cents"}
 # can_afford arguments every region shares, packs add their own
@@ -91,8 +93,8 @@ def category_arg(args: dict[str, Any]) -> str | None:
     category = args.get("category")
     if category is None:
         return None
-    if category not in CATEGORIES:
-        raise ValueError(f"category must be one of {', '.join(CATEGORIES)}")
+    if category not in CATEGORIES and category not in GROUPS:
+        raise ValueError(f"category must be one of {', '.join([*CATEGORIES, *GROUPS])}")
     return str(category)
 
 
@@ -181,6 +183,13 @@ class SpendTools:
         async with self._sessions() as session:
             rows = (await session.execute(query)).all()
         totals = [{"total": money(int(cents), code), "count": count} for code, cents, count in rows]
+        main = await self._currency()
+        if any(code != main for code, _, _ in rows):
+            # spending abroad joins the main currency so the answer is one number
+            amounts = [(code, int(cents)) for code, cents, _ in rows]
+            whole = await self._book.combined(amounts, main)
+            if whole is not None:
+                return {"totals": totals, "all_in": money(whole, main)}
         return {"totals": totals}
 
     # largest expenses first
@@ -397,7 +406,7 @@ class SpendTools:
         ]
         category = category_arg(args)
         if category is not None:
-            filters.append(LedgerEntry.category == category)
+            filters.append(LedgerEntry.category.in_(GROUPS.get(category, (category,))))
         return filters
 
     # expense rows as plain values the model can read

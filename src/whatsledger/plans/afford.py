@@ -190,11 +190,12 @@ def share_text(part: int, whole: int) -> str:
     return "under 1%" if pct < 1 else f"about {pct}%"
 
 
-# up to three labels, the rest counted
+# every label up to five, past that four and how many more
 def names(dues: list[Due]) -> str:
     labels = list(dict.fromkeys(due.label for due in dues))
-    shown = ", ".join(labels[:3])
-    return shown if len(labels) <= 3 else f"{shown} and {len(labels) - 3} more"
+    if len(labels) <= 5:
+        return ", ".join(labels[:-1]) + f" and {labels[-1]}" if len(labels) > 1 else "".join(labels)
+    return ", ".join(labels[:4]) + f" and {len(labels) - 4} more"
 
 
 # plain facts about what a purchase means for the user, so they can decide

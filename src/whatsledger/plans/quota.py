@@ -148,6 +148,12 @@ class QuotaBook:
             ]
         }
 
+    # amounts in several currencies as one sum in the base at today's rate, none without a rate
+    async def combined(self, amounts: list[tuple[str, int]], base: str) -> int | None:
+        rates = await self._rates.to(base) if self._rates is not None else {base: 1.0}
+        values = [convert(cents, code, rates) for code, cents in amounts]
+        return None if None in values else sum(value or 0 for value in values)
+
     # spending this period per bucket in the user currency
     async def _spent(
         self, session: AsyncSession, user: User, plan: BudgetPlan, today: date

@@ -56,6 +56,28 @@ async def test_sum_spend(sessions):
     assert await tools.sum_spend(WEEK) == {"totals": [{"total": "SGD 65.70", "count": 3}]}
     dining = await tools.sum_spend({**WEEK, "category": "Dining"})
     assert dining == {"totals": [{"total": "SGD 51.50", "count": 2}]}
+    # food covers dining and groceries, here only dining
+    assert await tools.sum_spend({**WEEK, "category": "Food"}) == dining
+
+
+# one euro is worth one and a half dollars here
+class Fixed:
+    async def to(self, base: str) -> dict[str, float]:
+        return {"EUR": 1.5, base: 1.0}
+
+
+# spending abroad joins the main currency at today's rate for one total
+async def test_sum_spend_all_in(sessions):
+    me = await seed(sessions)
+    async with sessions() as session:
+        session.add(LedgerEntry(
+            user_id=me.id, kind=LedgerKind.EXPENSE, amount_cents=1000, currency="EUR",
+            category="Dining", note="pasta", occurred_at=datetime(2026, 10, 26, 4, tzinfo=UTC)
+        ))
+        await session.commit()
+    tools = SpendTools(sessions, me.id, SG, QuotaBook(sessions, Fixed()), CORE_RULES)
+    food = await tools.sum_spend({**WEEK, "category": "Food"})
+    assert food["all_in"] == "SGD 66.50"
 
 
 # a late night expense counts on its local day

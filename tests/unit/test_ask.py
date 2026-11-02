@@ -36,6 +36,7 @@ def test_day_range_refuses(args):
 def test_category_arg():
     assert category_arg({"category": "Dining"}) == "Dining"
     assert category_arg({}) is None
+    assert category_arg({"category": "Food"}) == "Food"
     with pytest.raises(ValueError):
         category_arg({"category": "Sushi"})
 

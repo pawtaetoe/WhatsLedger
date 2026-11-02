@@ -1,4 +1,4 @@
-.PHONY: setup dev migrate test check record-fixtures seed-dev
+.PHONY: setup dev migrate test check record-fixtures seed-dev seed-demo
 
 setup:
 	uv sync
@@ -25,4 +25,7 @@ record-fixtures:
 	uv run python scripts/record_fixtures.py
 
 seed-dev:
-	uv run python scripts/seed_dev.py $(PHONE) $(if $(RESET),--reset)
+	uv run python scripts/seed_dev.py $(PHONE) $(if $(RESET),--reset) $(if $(PAY),--pay $(PAY)) $(if $(NAME),--name $(NAME))
+
+seed-demo:
+	uv run python scripts/seed_dev.py --demo $(if $(RESET),--reset) $(if $(PAY),--pay $(PAY)) $(if $(BOB),--bob $(BOB)) $(if $(ALICE),--alice $(ALICE))
