@@ -34,6 +34,17 @@ ROWS = [
     (12, 20, 18000, "Travel", None, "hotel deposit", False),
     (13, 12, 850, "Dining", None, "bubble tea and snack", False)
 ]
+# the same, with the currency it was paid in, a trip to Italy and Malaysia
+FOREIGN = [
+    (2, 13, 1500, "Dining", None, "carbonara", False, "EUR"),
+    (2, 20, 2100, "Dining", "Cam CODINO", "dinner", False, "EUR"),
+    (5, 11, 6000, "Travel", "Trenitalia", "train to Florence", False, "EUR"),
+    (6, 16, 4500, "Shopping", None, "leather wallet", False, "EUR"),
+    (8, 12, 3200, "Dining", None, "nasi lemak lunch", False, "MYR"),
+    (8, 21, 14500, "Travel", "Grab", "ride to KLIA", False, "MYR"),
+    (11, 15, 8900, "Entertainment", None, "concert ticket", False, "USD")
+]
+ENTRIES = [(*row, None) for row in ROWS] + FOREIGN
 # label, cents, every, days from today, category
 PLANNED = [
     ("rent", 180000, "month", 3, "Bills"),
@@ -60,7 +71,7 @@ def when(days_ago: int, hour: int, zone: ZoneInfo, now: datetime) -> datetime:
 # add the seed rows for one user, rows already there are left alone
 async def seed(wa_user_id: str, reset: bool) -> None:
     locale = LOCALES[settings.locale]
-    ids = [seed_id(wa_user_id, index) for index in range(len(ROWS))]
+    ids = [seed_id(wa_user_id, index) for index in range(len(ENTRIES))]
     plan_ids = [seed_id(wa_user_id, PLANNED_FROM + index) for index in range(len(PLANNED))]
     async with SessionFactory() as session:
         if reset:
@@ -82,7 +93,7 @@ async def seed(wa_user_id: str, reset: bool) -> None:
                 "user_id": user.id,
                 "kind": LedgerKind.EXPENSE,
                 "amount_cents": cents,
-                "currency": user.currency,
+                "currency": currency or user.currency,
                 "category": category,
                 "vendor": vendor,
                 "note": note,
@@ -91,7 +102,8 @@ async def seed(wa_user_id: str, reset: bool) -> None:
                 "occurred_at": when(days_ago, hour, zone, now),
                 "voided_at": now if voided else None
             }
-            for index, (days_ago, hour, cents, category, vendor, note, voided) in enumerate(ROWS)
+            for index, (days_ago, hour, cents, category, vendor, note, voided, currency)
+            in enumerate(ENTRIES)
         ]
         added = await session.execute(
             insert(LedgerEntry)
@@ -114,7 +126,7 @@ async def seed(wa_user_id: str, reset: bool) -> None:
             .on_conflict_do_nothing(index_elements=["id"])
         )
         await session.commit()
-    print(f"added {count} of {len(ROWS)} seed entries in {user.currency}, {user.timezone}")
+    print(f"added {count} of {len(ENTRIES)} seed entries in {user.currency}, {user.timezone}")
     if count == 0:
         print("already seeded, run with --reset to replace them with fresh dates")
 
