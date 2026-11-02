@@ -6,6 +6,15 @@
 <title>{{ view.bill.vendor or "Bill" }} · WhatsLedger</title>
 <script src="/static/htmx.min.js" defer></script>
 {% include "_style.html" %}
+<script>
+// the reply redraws every tick box, so a tick made while the save was in flight would be
+// lost with its delayed save, skip that redraw and let the next save, which has every tick, draw
+document.addEventListener("change", (e) => { e.target.form && (e.target.form.dataset.stale = "1"); });
+document.addEventListener("htmx:beforeRequest", (e) => { delete e.detail.elt.dataset.stale; });
+document.addEventListener("htmx:beforeSwap", (e) => {
+  if (e.detail.requestConfig.elt.dataset.stale) e.detail.shouldSwap = false;
+});
+</script>
 </head>
 <body>
 <main>
