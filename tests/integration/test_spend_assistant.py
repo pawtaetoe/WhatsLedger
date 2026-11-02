@@ -84,8 +84,8 @@ async def test_assistant_replies(sessions):
     transport = FakeTransport()
     question = Inbound("m1", ME, "text", text="this week?")
     await SpendAssistant(llm, sessions, QuotaBook(sessions), PACK).answer(question, transport)
-    replies = [reply for _, reply in transport.sent_text]
-    assert replies == [ask.CHECKING, "You spent SGD 65.70 this week."]
+    assert transport.sent_text == [(ME, ask.CHECKING)]
+    assert transport.sent_buttons == [(ME, "You spent SGD 65.70 this week.", [ask.DASH])]
 
 
 # a model failure gives a plain retry message
@@ -121,7 +121,7 @@ async def test_afford_caveat_and_pay(sessions):
     transport = FakeTransport()
     assistant = SpendAssistant(llm, sessions, QuotaBook(sessions), PACK)
     await assistant.answer(Inbound("m1", ME, "text", text="can I afford a car?"), transport)
-    assert transport.sent_text[-1][1].endswith("\n\n" + ask.DISCLAIMER)
+    assert transport.sent_buttons[-1][1].endswith("\n\n" + ask.DISCLAIMER)
     tools = SpendTools(sessions, me.id, SG, QuotaBook(sessions), CORE_RULES)
     result = await tools.can_afford(
         {"kind": "car", "monthly_payment": 900, "running_costs": 600, "take_home": 4500}

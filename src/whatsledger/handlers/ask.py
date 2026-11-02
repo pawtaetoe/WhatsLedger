@@ -35,6 +35,8 @@ LIST_LIMIT = 20
 CHECKING = "Checking your spending…"
 NOTHING_YET = "You haven't logged anything yet. Try something like coffee 4.50 first"
 UNAVAILABLE = "I couldn't work that out just now. Please try again in a minute"
+# the button that opens the dashboard
+DASH = ("menu:dash", "My dashboard")
 DISCLAIMER = "_A rule of thumb, not financial advice._"
 ALL_SQUARE = "*You're all square*\nNobody owes anybody right now."
 # days ahead to look for the next time a plan is due
@@ -439,7 +441,7 @@ class SpendAssistant:
             query = select(User.id).where(User.wa_user_id == inbound.user_id)
             user_id = (await session.execute(query)).scalar_one_or_none()
         text = await owed_text(self._sessions, self._book, user_id) if user_id else ALL_SQUARE
-        await transport.send_buttons(inbound.user_id, text, [("menu:dash", "My dashboard")])
+        await transport.send_buttons(inbound.user_id, text, [DASH])
 
     # say we are checking, run the tool loop, reply with its answer or a fallback
     async def answer(self, inbound: Inbound, transport: Transport) -> None:
@@ -478,7 +480,8 @@ class SpendAssistant:
                 buttons.append((f"bills:remind:{keys}", "Remind me"))
             await transport.send_buttons(inbound.user_id, reply, buttons)
             return
-        await transport.send_text(inbound.user_id, reply)
+        # the full picture is one tap away after any answer
+        await transport.send_buttons(inbound.user_id, reply, [DASH])
 
 
 # a plain list of who owes whom, for the button under a you owe message, no model needed
