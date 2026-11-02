@@ -1,4 +1,3 @@
-import re
 import uuid
 from datetime import UTC, datetime
 from pathlib import Path
@@ -200,7 +199,7 @@ class ClaimPage:
 
 claim_page = ClaimPage(
     ClaimTokens(settings.app_secret), ClaimBook(SessionFactory),
-    settings.whatsapp_bot_number or re.sub(r"\D", "", settings.twilio_whatsapp_from),
+    settings.bot_number,
     settings.public_base_url.startswith("https://")
 )
 claim_router = APIRouter()

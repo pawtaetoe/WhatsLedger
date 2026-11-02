@@ -360,8 +360,8 @@ rates = Rates(settings.exchange_rate_api_key)
 book = QuotaBook(SessionFactory, rates)
 logger = ExpenseLogger(llm, SessionFactory, locale, book)
 bills = UpcomingBills(SessionFactory, logger, settings.remind_hour)
-# the bot number friends message to claim, from either provider
-bot_number = settings.whatsapp_bot_number or re.sub(r"\D", "", settings.twilio_whatsapp_from)
+# the bot number friends message to claim, from the active provider
+bot_number = settings.bot_number
 # pay rails and settling up, shared by the chat and the dashboard, paynow only offers itself
 # to singapore numbers in sgd, so it is on for everyone
 pay_rails = PayRails((PayNow(),))

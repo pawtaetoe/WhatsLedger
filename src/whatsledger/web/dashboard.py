@@ -1,6 +1,5 @@
 import base64
 import logging
-import re
 import uuid
 from datetime import UTC, datetime
 from typing import Annotated
@@ -151,7 +150,7 @@ overview = Overview(SessionFactory, book, rates)
 dashboard_page = DashboardPage(
     ClaimTokens(settings.app_secret), overview,
     settings.public_base_url.startswith("https://"),
-    settings.whatsapp_bot_number or re.sub(r"\D", "", settings.twilio_whatsapp_from)
+    settings.bot_number
 )
 dashboard_router = APIRouter()
 

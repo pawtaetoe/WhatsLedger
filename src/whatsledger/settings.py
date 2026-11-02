@@ -40,5 +40,12 @@ class Settings(BaseSettings):
     def async_driver(cls, url: str) -> str:
         return re.sub(r"^postgres(?:ql)?://", "postgresql+asyncpg://", url)
 
+    # the number wa.me links point at, twilio always uses its own sender
+    @property
+    def bot_number(self) -> str:
+        if self.whatsapp_provider == "twilio":
+            return re.sub(r"\D", "", self.twilio_whatsapp_from)
+        return self.whatsapp_bot_number
+
 
 settings = Settings()
