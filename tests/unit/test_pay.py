@@ -46,3 +46,22 @@ def test_paynow_offer():
 def test_plain_fallback():
     assert PayRails().offer("6581234567", 1000, "SGD", "x").text == PLAIN
     assert PayRails((PayNow(),)).offer("6581234567", 1000, "EUR", "x").text == PLAIN
+
+
+# whatsapp drops 1 bit pngs, so the qr is 8 bit rgb with a white border and a dark corner square
+def test_qr_is_rgb_png():
+    import struct
+    import zlib
+
+    from whatsledger.pay.rails_sg import qr_png
+
+    png = qr_png("hello", scale=2, border=1)
+    side, _, depth, color = struct.unpack(">IIBB", png[16:26])
+    assert (depth, color) == (8, 2)
+    start = png.index(b"IDAT") + 4
+    raw = zlib.decompress(png[start:png.index(b"IEND") - 8])
+    stride = 1 + side * 3
+    assert len(raw) == side * stride
+    assert raw[1:4] == b"\xff\xff\xff"
+    # first dark module of the finder square, after the border
+    assert raw[2 * stride + 1 + 6 : 2 * stride + 1 + 9] == b"\x00\x00\x00"

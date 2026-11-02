@@ -1,5 +1,6 @@
-import io
 import re
+import struct
+import zlib
 
 import segno
 
@@ -8,6 +9,30 @@ from whatsledger.pay.rails import PayOffer
 
 # a singapore mobile on whatsapp, 65 then 8 or 9 and seven digits
 MOBILE = re.compile(r"65([89]\d{7})")
+
+
+# a qr as an 8 bit rgb png, whatsapp drops the 1 bit pngs segno writes
+def qr_png(text: str, scale: int = 8, border: int = 4) -> bytes:
+    matrix = segno.make_qr(text, error="m").matrix
+    size = len(matrix) + 2 * border
+    blank = [1] * size
+    rows = [blank] * border + [
+        [1] * border + [0 if dark else 1 for dark in row] + [1] * border for row in matrix
+    ] + [blank] * border
+    raw = b"".join(
+        b"\x00" + b"".join((b"\xff" if cell else b"\x00") * 3 * scale for cell in row)
+        for row in rows for _ in range(scale)
+    )
+
+    def chunk(kind: bytes, data: bytes) -> bytes:
+        body = kind + data
+        return struct.pack(">I", len(data)) + body + struct.pack(">I", zlib.crc32(body))
+
+    side = size * scale
+    return (
+        b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", side, side, 8, 2, 0, 0, 0))
+        + chunk(b"IDAT", zlib.compress(raw)) + chunk(b"IEND", b"")
+    )
 
 
 # paynow to the payer's own mobile, one sgqr that paylah and singapore bank apps scan
@@ -29,12 +54,9 @@ class PayNow:
         if currency != "SGD" or found is None:
             return None
         mobile = found.group(1)
-        image = io.BytesIO()
-        segno.make_qr(self.code(mobile, cents, reference), error="m").save(
-            image, kind="png", scale=8, border=4
-        )
         text = (
             f"*PayNow* to {mobile[:4]} {mobile[4:]}, reference {reference}\n"
             "Or save the QR above and scan it from your gallery in your bank app."
         )
-        return PayOffer(text, image.getvalue(), f"PayNow to {mobile[:4]} {mobile[4:]}")
+        image = qr_png(self.code(mobile, cents, reference))
+        return PayOffer(text, image, f"PayNow to {mobile[:4]} {mobile[4:]}")
